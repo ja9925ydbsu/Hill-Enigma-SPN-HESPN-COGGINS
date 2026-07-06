@@ -1,0 +1,41 @@
+====================================================================
+HESPN DIFFERENTIAL-DISTRIBUTION PROBE (fresh session)
+====================================================================
+timestamp        : 20260706_175739
+python           : 3.12.3  numpy 2.4.4
+platform         : Linux-6.18.5-x86_64-with-glibc2.39
+self-test PASS (Appendix A vector: K, rk[0], round-0 steps 1-5, 16-round CT, round trip, batch equivalence)
+rounds           : 16
+samples per delta : 50000 random plaintext pairs
+KDF              : Argon2id t=3, m=65,536 KiB, p=2, l=32
+password         : HESPN-8296c6e91eb435e50bc4e8ec
+salt (hex)       : FEF9CA6DC18CA9DD313F1255C74DB7BA
+salt prefix      : FEF9...  <- use this label in the manuscript
+master key (hex) : 64FC976CB7AF8290F0DF0DCC2675E84AA5826739B8331F8BBF57A50D805261EF   [Argon2id, 0.5s]
+--------------------------------------------------------------------
+input difference    distinct/50000   max mult.     max prob.
+--------------------------------------------------------------------
+1-bit b0.7             50000/50000           1      2.00e-05 OK
+1-bit b0.0             50000/50000           1      2.00e-05 OK
+1-bit b7.3             50000/50000           1      2.00e-05 OK
+1-bit b15.0            50000/50000           1      2.00e-05 OK
+1-bit b15.7            50000/50000           1      2.00e-05 OK
+1-byte b0              50000/50000           1      2.00e-05 OK
+1-byte b5              50000/50000           1      2.00e-05 OK
+1-byte b10             50000/50000           1      2.00e-05 OK
+1-byte b15             50000/50000           1      2.00e-05 OK
+2-byte b0,b8           50000/50000           1      2.00e-05 OK
+2-byte b0,b1           50000/50000           1      2.00e-05 OK
+4-byte b0,4,8,12       50000/50000           1      2.00e-05 OK
+--------------------------------------------------------------------
+SUMMARY (report in Table 7 / Section 5.3)
+rounds                     : 16
+samples per input difference: 50000
+input differences tested   : 12 (single-bit, single-byte, and low-weight multi-byte)
+all distinct (no collisions): YES
+largest output-diff multiplicity across all deltas: 1 (= 2.00e-05)
+resolution limit 1/N       : 2.00e-05
+elapsed                    : 3s
+interpretation: no output-difference clustering detected at 16 rounds for any tested input difference; every count is at the sample-size resolution limit, consistent with ideal-permutation behavior on this screen.
+log file                   : hespn_diff_r16_20260706_175739.txt
+per-delta data             : hespn_diff_r16_20260706_175739.csv

@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "Hill-Enigma-SPN / HESPN"
+authors:
+
+* family-names: "Coggins"
+  given-names: "Porter"
+  version: "4"
+  date-released: "2026-07-06"
+  repository-code: "https://github.com/ja9925ydbsu/Hill-Enigma-SPN-HESPN-COGGINS"
+  license: "MIT"
+  abstract: "Python research code for the Hill-Enigma-SPN, abbreviated HESPN, including diagnostic reruns, experimental checks, and test-vector generation."
+  keywords:
+* cryptography
+* Hill cipher
+* Enigma
+* SPN
+* substitution-permutation network
+* HESPN

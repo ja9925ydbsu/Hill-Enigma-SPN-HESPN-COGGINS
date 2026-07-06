@@ -2,7 +2,7 @@
 
 This repository contains Python code for the Hill-Enigma-SPN, abbreviated **HESPN**, a prototype cryptographic construction developed for experimental and manuscript-support purposes.
 
-The code supports rerunning and checking the computational experiments associated with the HESPN manuscript, including round-count diagnostics, NIST SP 800-22 style keystream evaluation, avalanche testing, branch-number filtering, algebraic-degree estimation, and reference test-vector generation.
+The code supports rerunning and checking computational experiments associated with the HESPN manuscript, including round-count diagnostics, NIST SP 800-22 style keystream evaluation, avalanche testing, branch-number filtering, algebraic-degree estimation, and reference test-vector generation.
 
 ## Repository contents
 
@@ -11,6 +11,9 @@ The code supports rerunning and checking the computational experiments associate
 | `HESPNv4Rerun.py`         | Main HESPN v4 rerun program and experimental framework.                                                |
 | `HESPNv4Diagnostics.py`   | Diagnostic script for reproducing characterization results, including round-count and keystream tests. |
 | `hespn_test_vector_v4.py` | Reference test-vector generator for the 16-round HESPN v4 protocol.                                    |
+| `README.md`               | Overview and usage instructions for this repository.                                                   |
+| `LICENSE`                 | MIT License for this repository.                                                                       |
+| `CITATION.cff`            | Citation metadata for users who wish to cite this software.                                            |
 
 ## Requirements
 
@@ -71,9 +74,9 @@ This repository is intended for research, manuscript review, and reproducibility
 
 ## Citation
 
-If you use this code in academic work, please cite the associated HESPN manuscript.
+If you use this software in academic work, please cite it using the information provided in the `CITATION.cff` file included in this repository.
 
-A formal citation file may be added later as `CITATION.cff`.
+GitHub may also display a **Cite this repository** option when the `CITATION.cff` file is present in the repository root.
 
 ## Author / concept
 
@@ -82,4 +85,10 @@ Repository: `ja9925ydbsu/Hill-Enigma-SPN-HESPN-COGGINS`
 
 ## License
 
-No license file is currently included. Until a license is added, all rights are reserved by default. Add a `LICENSE` file if you want to specify how others may use, copy, or modify this code.
+This repository is licensed under the MIT License. See the `LICENSE` file for details.
+
+## Disclaimer
+
+This code is provided for research and reproducibility purposes. It has not been independently audited for production cryptographic use.
+
+

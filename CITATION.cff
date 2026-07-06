@@ -1,19 +1,37 @@
-
 cff-version: 1.2.0
-message: "If you use this software, please cite it using the metadata below."
+message: "If you use this software, please cite it using the metadata below, and cite the associated HESPN manuscript."
 title: "Hill-Enigma-SPN / HESPN"
+type: software
 authors:
   - family-names: "Coggins"
-    given-names: "Porter"
+    given-names: "Porter E."
+    name-suffix: "III"
+    affiliation: "Bemidji State University"
 version: "4"
 date-released: "2026-07-06"
 repository-code: "https://github.com/ja9925ydbsu/Hill-Enigma-SPN-HESPN-COGGINS"
-license: "MIT"
-abstract: "Python research code for the Hill-Enigma-SPN, abbreviated HESPN, including diagnostic reruns, experimental checks, and test-vector generation."
+license: MIT
+abstract: "Python research code for the Hill-Enigma-SPN (HESPN), a 128-bit substitution-permutation network research construction, including the reference implementation and experimental suite, structured-input diagnostics, and reference test-vector generation supporting the associated manuscript."
 keywords:
   - cryptography
   - Hill cipher
   - Enigma
   - SPN
   - substitution-permutation network
+  - branch number
+  - Argon2id
   - HESPN
+# After the manuscript is accepted, uncomment and complete the block below
+# so citations resolve to the paper rather than the repository:
+#
+# preferred-citation:
+#   type: article
+#   title: "Hill-Enigma-SPN: A Novel Substitution-Permutation Network Cipher with GF(2) Matrix-Rotor Scheduling and Argon2id Key Derivation"
+#   authors:
+#     - family-names: "Coggins"
+#       given-names: "Porter E."
+#       name-suffix: "III"
+#   journal: "Cryptography"
+#   year: 2026
+#   volume: 10
+#   doi: "10.3390/xxxxx"

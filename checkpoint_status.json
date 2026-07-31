@@ -1,0 +1,9 @@
+{
+  "configuration_fingerprint": "76b1fa1ba246ee4c4ca8a440fcdbb0dacb070173905423dc037a300b0748e9b6",
+  "last_completed_run_id": "calibration|spn_null|r16|k0007|bytepos_ab15_db15_a07_d10_off+00",
+  "per_key_results": "C:\\Users\\ja9925yd.b\\OneDrive - Minnesota State\\software folder\\boomerang_study_three_way\\per_key_results.csv",
+  "runs_completed_in_current_call": 960,
+  "runs_remaining_in_current_call": 0,
+  "telemetry": "C:\\Users\\ja9925yd.b\\OneDrive - Minnesota State\\software folder\\boomerang_study_three_way\\telemetry.jsonl",
+  "updated_utc": "2026-07-25T21:12:30.767055+00:00"
+}

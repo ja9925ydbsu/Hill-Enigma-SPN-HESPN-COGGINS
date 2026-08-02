@@ -1,0 +1,193 @@
+{
+  "profile": {
+    "iterations": 150,
+    "trials": 1500,
+    "rounds": 4,
+    "period": 8
+  },
+  "seed": 20260731,
+  "optimized_table": [
+    [
+      0,
+      3,
+      1,
+      2
+    ],
+    [
+      2,
+      3,
+      0,
+      1
+    ],
+    [
+      3,
+      0,
+      2,
+      1
+    ],
+    [
+      1,
+      3,
+      0,
+      2
+    ],
+    [
+      2,
+      1,
+      3,
+      0
+    ],
+    [
+      1,
+      0,
+      2,
+      3
+    ],
+    [
+      3,
+      1,
+      0,
+      2
+    ],
+    [
+      1,
+      0,
+      2,
+      3
+    ]
+  ],
+  "objective": 37273.69666666667,
+  "trail_metrics": {
+    "mean_cumulative_active_sboxes": 36.954,
+    "sd_cumulative_active_sboxes": 0.2157560350642982,
+    "minimum_sampled_cumulative_active_sboxes": 35.0,
+    "mean_final_active_bytes": 15.942666666666666,
+    "probability_cumulative_at_most_35": 0.0013333333333333333,
+    "probability_cumulative_at_most_36": 0.04466666666666667
+  },
+  "structural_metrics": {
+    "distinct_rows": 7.0,
+    "orientation_changes": 30.0,
+    "column_coverage": 15.0,
+    "palindrome_matches": 0.0,
+    "repeated_adjacent_rows": 0.0
+  },
+  "history": [
+    {
+      "iteration": 1,
+      "best_score": 37263.57333333334,
+      "current_score": 37263.57333333334
+    },
+    {
+      "iteration": 8,
+      "best_score": 37263.63333333334,
+      "current_score": 37263.63333333334
+    },
+    {
+      "iteration": 15,
+      "best_score": 37263.763333333336,
+      "current_score": 37263.763333333336
+    },
+    {
+      "iteration": 22,
+      "best_score": 37263.81333333334,
+      "current_score": 37263.60333333333
+    },
+    {
+      "iteration": 29,
+      "best_score": 37263.83333333334,
+      "current_score": 37263.83333333334
+    },
+    {
+      "iteration": 36,
+      "best_score": 37263.83333333334,
+      "current_score": 37263.46333333333
+    },
+    {
+      "iteration": 43,
+      "best_score": 37263.83333333334,
+      "current_score": 37263.64000000001
+    },
+    {
+      "iteration": 50,
+      "best_score": 37265.99333333333,
+      "current_score": 37265.89333333333
+    },
+    {
+      "iteration": 57,
+      "best_score": 37269.99999999999,
+      "current_score": 37269.74999999999
+    },
+    {
+      "iteration": 64,
+      "best_score": 37269.99999999999,
+      "current_score": 37269.99999999999
+    },
+    {
+      "iteration": 71,
+      "best_score": 37271.36333333333,
+      "current_score": 37271.36333333333
+    },
+    {
+      "iteration": 78,
+      "best_score": 37271.36333333333,
+      "current_score": 37271.17333333333
+    },
+    {
+      "iteration": 85,
+      "best_score": 37271.36333333333,
+      "current_score": 37271.07
+    },
+    {
+      "iteration": 92,
+      "best_score": 37271.36333333333,
+      "current_score": 37270.93
+    },
+    {
+      "iteration": 99,
+      "best_score": 37271.36333333333,
+      "current_score": 37271.100000000006
+    },
+    {
+      "iteration": 106,
+      "best_score": 37271.36333333333,
+      "current_score": 37271.28
+    },
+    {
+      "iteration": 113,
+      "best_score": 37271.36333333333,
+      "current_score": 37271.20333333333
+    },
+    {
+      "iteration": 120,
+      "best_score": 37272.5,
+      "current_score": 37272.5
+    },
+    {
+      "iteration": 127,
+      "best_score": 37272.5,
+      "current_score": 37272.380000000005
+    },
+    {
+      "iteration": 134,
+      "best_score": 37273.386666666665,
+      "current_score": 37273.37666666666
+    },
+    {
+      "iteration": 141,
+      "best_score": 37273.386666666665,
+      "current_score": 37273.37666666666
+    },
+    {
+      "iteration": 148,
+      "best_score": 37273.58666666667,
+      "current_score": 37273.58666666667
+    },
+    {
+      "iteration": 150,
+      "best_score": 37273.69666666667,
+      "current_score": 37273.69666666667
+    }
+  ],
+  "status": "heuristic candidate selected by sampled DDT-trail activity; not a proof of optimality or security improvement"
+}

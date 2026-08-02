@@ -1,0 +1,5 @@
+rounds,minimum_active_sboxes,differential_trail_log2_upper_bound,linear_correlation_log2_upper_bound,activity_masks,solver_message
+2,5,-30.0,-15.0,"[16920, 128]",Optimization terminated successfully. (HiGHS Status 7: Optimal)
+4,25,-150.0,-75.0,"[65535, 8580, 1024, 15]",Optimization terminated successfully. (HiGHS Status 7: Optimal)
+6,30,-180.0,-90.0,"[16920, 32, 15, 65535, 16920, 64]",Optimization terminated successfully. (HiGHS Status 7: Optimal)
+8,50,-300.0,-150.0,"[50745, 33, 7, 65295, 56955, 4162, 24576, 4080]",Optimization terminated successfully. (HiGHS Status 7: Optimal)

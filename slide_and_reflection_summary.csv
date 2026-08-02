@@ -1,0 +1,6 @@
+variant,rounds,orientation_period,unique_orientation_rows,exact_schedule_palindrome,structural_repeat_pairs,full_keyed_repeat_pairs,all_round_keys_distinct,adjacent_key_hd_min,adjacent_key_hd_max,adjacent_key_hd_mean,palindromic_reflected_pairs,inverse_related_positions,transpose_related_positions,equal_reflected_round_keys,reflected_key_xor_hd_min,reflected_key_xor_hd_max,reflected_key_xor_hd_mean,fixed_round_order_self_inverse
+static,16,1,1,True,120,0,True,58,74,65.133,8,0,0,0,53,71,61.5,False
+rotor,16,4,4,False,24,0,True,58,74,65.133,0,0,0,0,53,71,61.5,False
+round_only,16,4,4,False,24,0,True,58,74,65.133,0,0,0,0,53,71,61.5,False
+position_only,16,1,1,True,120,0,True,58,74,65.133,8,0,0,0,53,71,61.5,False
+optimized,16,8,7,False,12,0,True,58,74,65.133,0,0,0,0,53,71,61.5,False

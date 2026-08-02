@@ -1,66 +1,15 @@
 {
-  "script": "Matched static-versus-rotor experiment for HESPN.py",
   "profile": "standard",
-  "profile_parameters": {
-    "keys": 4,
-    "avalanche_trials": 2000,
-    "differential_samples": 10000,
-    "counter_pairs": 10000,
-    "differential_keys": 2
-  },
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "elapsed_seconds": 741.3410952091217,
   "variants": [
     "static",
     "rotor",
     "round_only",
-    "position_only"
+    "position_only",
+    "optimized"
   ],
-  "schedule_definitions": {
-    "static": "0",
-    "rotor": "(r+j) mod 4",
-    "round_only": "r mod 4",
-    "position_only": "j mod 4"
-  },
-  "avalanche_rounds": [
-    1,
-    2,
-    4,
-    5,
-    8,
-    12,
-    16
-  ],
-  "differential_rounds": [
-    4,
-    8,
-    12,
-    16
-  ],
-  "counter_rounds": [
-    8,
-    12,
-    14,
-    16
-  ],
-  "counter_strides": [
-    1,
-    2,
-    4,
-    8,
-    16,
-    256
-  ],
-  "weight1_rounds": [
-    4,
-    8,
-    12,
-    16
-  ],
-  "key_derivation": "SHA-256 of fixed public labels; fixed-key comparison only",
-  "test_vector": {
-    "master_key": "15C6D44AA434C83CB8C87A63969EC64513E2446B37DE5AC60B513C99FC1756E3",
-    "round_key_0": "740535C4CD34EA8908367F224C331C10",
-    "ciphertext": "3FD6391275C252DD4E3BC4CFE7F82C96"
-  },
-  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
-  "elapsed_seconds": 4741.00999212265
+  "optimizer_run": true,
+  "interpretation_boundary": "The study evaluates a rotated Hill-derived MDS mix layer. It does not establish a secure cipher, an AES replacement, or schedule optimality."
 }

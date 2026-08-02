@@ -1,0 +1,6 @@
+variant,rounds,active_budget,maximum_captured_mass,maximum_captured_log2_mass,worst_start_position,worst_start_value,status
+static,4,40,3.800081701379263e-63,-207.35543954121403,0,2,captured-mass lower bound; omitted transitions/trails can add probability
+rotor,4,40,4.875974037447657e-63,-206.9957795336818,7,2,captured-mass lower bound; omitted transitions/trails can add probability
+round_only,4,40,1.1869459682199748e-63,-209.03421571533792,14,128,captured-mass lower bound; omitted transitions/trails can add probability
+position_only,4,40,4.935321335858655e-63,-206.97832595714164,0,64,captured-mass lower bound; omitted transitions/trails can add probability
+optimized,4,40,7.712774901493397e-63,-206.3342199716705,2,2,captured-mass lower bound; omitted transitions/trails can add probability

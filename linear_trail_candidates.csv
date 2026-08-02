@@ -1,0 +1,16 @@
+variant,kind,rounds,candidate_log2_magnitude,candidate_magnitude,start_position,start_value,cumulative_active_sboxes,retained_best_weight_path_count,status
+static,linear,2,-15.0,3.0517578125e-05,0,1,5,6876,heuristic candidate; not a global optimum proof
+static,linear,3,-63.0,1.0842021724855044e-19,0,1,21,7500,heuristic candidate; not a global optimum proof
+static,linear,4,-105.0,2.465190328815662e-32,0,1,35,1280,heuristic candidate; not a global optimum proof
+rotor,linear,2,-15.0,3.0517578125e-05,0,1,5,6876,heuristic candidate; not a global optimum proof
+rotor,linear,3,-63.0,1.0842021724855044e-19,0,1,21,7500,heuristic candidate; not a global optimum proof
+rotor,linear,4,-108.0,3.0814879110195774e-33,0,1,36,5120,heuristic candidate; not a global optimum proof
+round_only,linear,2,-15.0,3.0517578125e-05,0,1,5,6876,heuristic candidate; not a global optimum proof
+round_only,linear,3,-63.0,1.0842021724855044e-19,0,1,21,7500,heuristic candidate; not a global optimum proof
+round_only,linear,4,-105.0,2.465190328815662e-32,0,2,35,320,heuristic candidate; not a global optimum proof
+position_only,linear,2,-15.0,3.0517578125e-05,0,1,5,6876,heuristic candidate; not a global optimum proof
+position_only,linear,3,-63.0,1.0842021724855044e-19,0,1,21,7500,heuristic candidate; not a global optimum proof
+position_only,linear,4,-105.0,2.465190328815662e-32,0,1,35,640,heuristic candidate; not a global optimum proof
+optimized,linear,2,-15.0,3.0517578125e-05,0,1,5,6876,heuristic candidate; not a global optimum proof
+optimized,linear,3,-63.0,1.0842021724855044e-19,0,1,21,7500,heuristic candidate; not a global optimum proof
+optimized,linear,4,-105.0,2.465190328815662e-32,0,1,35,320,heuristic candidate; not a global optimum proof

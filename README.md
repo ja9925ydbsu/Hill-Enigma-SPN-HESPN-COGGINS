@@ -1,214 +1,214 @@
-# Hill-Enigma-SPN / HESPN
+# GF(2^8) MDS-Rotor SPN Study
 
-This repository contains experimental Python code and reproducibility materials for the Hill-Enigma-SPN, abbreviated **HESPN**, and related studies of rotor-scheduled Hill-derived diffusion layers in substitution-permutation networks.
+This package is a separate research branch for testing whether previously reported
+Hill-matrix element rotations can serve as a **cross-byte modified mix layer** in a
+substitution-permutation network (SPN).
 
-The repository supports three research tracks:
+It is **not** a proposal to replace AES, and it does not claim that the experimental
+SPN is deployment-ready or completely secure. The purpose is to test the mix-layer
+hypothesis under stronger conditions than the byte-local 8x8 GF(2) HESPN layer.
 
-1. **Original HESPN v4 implementation**
-2. **Matched static-versus-rotor byte-local ablation**
-3. **Cross-byte 4 x 4 GF(2^8) MDS-rotor boundary study**
+## What changed from HESPN v4
 
-This project is intended for research, manuscript review, and reproducibility support. It is not production cryptographic software, and it does not claim to replace the Advanced Encryption Standard, AES.
+The published HESPN v4 experiment applies an 8x8 binary matrix independently to
+each byte. This study instead uses an asymmetric 4x4 Cauchy maximum-distance-
+separable (MDS) matrix over GF(2^8), so each matrix application spans four AES-sized
+S-box inputs. Every 90-degree matrix-element orientation is verified to remain MDS
+with symbol branch number 5.
 
-## Research tracks
+The asymmetric Cauchy matrix is the default rather than the circulant AES
+MixColumns matrix. This avoids making the rotor comparison depend on an unusually
+symmetric base matrix. The AES matrix remains documented in `mds_rotor_core.py` as
+a future control.
 
-### 1. Original HESPN v4 implementation
+## Five matched schedules
 
-The original HESPN v4 programs implement and diagnose the byte-local rotor-scheduled construction used in the earlier HESPN study.
+Only the public orientation schedule changes:
 
-| File | Purpose |
-|---|---|
-| `HESPNv4Rerun.py` | Main HESPN v4 rerun program and experimental framework. |
-| `HESPNv4Diagnostics.py` | Diagnostic script for round-count, keystream, avalanche, branch-number, and related characterization tests. |
-| `hespn_test_vector_v4.py` | Normative test-vector generator for the 16-round HESPN v4 protocol. |
+1. `static`: orientation 0 in every round and column.
+2. `rotor`: `(round + column) mod 4`.
+3. `round_only`: `round mod 4` in every column.
+4. `position_only`: `column mod 4` in every round.
+5. `optimized`: a period-8 schedule selected by a deterministic heuristic search.
 
-### 2. Matched static-versus-rotor byte-local ablation
+The S-box, ShiftRows, MDS seed matrix, round-key derivation, input panels, and
+analysis settings are held fixed.
 
-The `matched_schedule_ablation/` directory contains a controlled comparison of the byte-local static and rotor schedules under matched deterministic key contexts and experimental conditions.
+## Analyses included
 
-Principal materials include:
+1. **Minimum active S-box count** over 2, 4, 6, and 8 rounds.
+2. **Count of minimum-activity support patterns**, using capped MILP enumeration.
+3. **Differential trail bound and candidate search**:
+   - certified bound from the active-S-box minimum and AES maximum differential
+     probability;
+   - coefficient-sensitive beam-search candidates using the exact AES DDT.
+4. **Linear-correlation bound and candidate search**:
+   - certified bound from the active-S-box minimum and AES maximum correlation;
+   - coefficient-sensitive beam-search candidates using the exact AES LAT.
+5. **Aggregate low-weight differential class estimate**, reported as captured mass
+   under explicit beam and transition pruning.
+6. **MILP trail search**, solved with SciPy/HiGHS and exported as solver-neutral LP
+   files for CBC, Gurobi, CPLEX, or similar solvers.
 
-| Path | Purpose |
-|---|---|
-| `matched_schedule_ablation/matched_static_vs_rotor_experiment.py` | Main matched-ablation program. |
-| `matched_schedule_ablation/results/paper_20260731/` | Validated result tables, metadata, and manuscript-support outputs. |
+The package also includes:
 
-The experiment includes exact restricted weight-one trail enumeration, matched plaintext-avalanche testing, a sampled-differential collision screen, mean output-difference measurements, and structured-counter distance comparisons.
+- a **slide self-similarity audit**;
+- a **reflection/inverse-symmetry audit**;
+- a deterministic schedule optimizer;
+- algebraic and encryption/decryption self-tests;
+- CSV, JSON, LP, and Markdown result output.
 
-The exact inertness result is limited to the byte-local weight-one position geometry analyzed in the manuscript. It is not a general claim that every possible rotor schedule or wider diffusion layer is inert.
+## Important interpretation point
 
-### 3. Cross-byte 4 x 4 GF(2^8) MDS-rotor boundary study
+Since every orientation is MDS with branch number 5, the certified wide-trail
+active-S-box bounds are necessarily the same for all schedules. A rotor benefit, if
+one exists, must appear in coefficient-sensitive trail multiplicities, aggregate
+trail classes, related-key/slide structure, or other multi-round properties—not in
+the one-round branch number itself.
 
-The `mds_rotor_spn_study/` directory contains a separate experimental SPN harness using an asymmetric 4 x 4 Cauchy MDS matrix over `GF(2^8)` and its four 90-degree orientations.
+The beam searches are heuristic. Their candidate trail values are achieved by
+retained trails but are not global optimum proofs. The MILP active-S-box bounds are
+the certified results.
 
-Five schedules are compared:
+## Files
 
-- `static`
-- `rotor`
-- `round_only`
-- `position_only`
-- `optimized`
+- `mds_rotor_core.py` — GF(2^8), Cauchy MDS matrix, rotations, schedules, SPN,
+  encryption/decryption, and self-checks.
+- `mds_rotor_milp.py` — certified activity MILP, capped optimum-pattern
+  enumeration, and LP export.
+- `mds_rotor_trails.py` — AES DDT/LAT generation, differential/linear beam search,
+  and aggregate low-active mass search.
+- `mds_rotor_schedule_optimizer.py` — deterministic period-8 schedule search.
+- `slide_reflection_audit.py` — detailed and compact slide/reflection diagnostics.
+- `compact_existing_audit.py` — converts an already-completed verbose audit into compact JSON, CSV, and Markdown without rerunning the experiment.
+- `run_mds_rotor_study.py` — main command-line runner.
+- `test_mds_rotor_study.py` — unit tests.
+- `run_smoke_test.bat`, `run_standard_study.bat`, `run_paper_study.bat` — Windows
+  launchers.
+- `run_study.ps1` — PowerShell launcher with a selectable profile.
 
-Principal analyses include:
+## Installation on Windows
 
-- verification that all four orientations are distinct, invertible, and MDS with branch number 5;
-- certified active-S-box MILP bounds for 2, 4, 6, and 8 rounds;
-- capped enumeration of minimum-activity support patterns;
-- coefficient-sensitive differential and linear beam searches;
-- captured low-active differential mass estimates;
-- schedule optimization diagnostics;
-- slide and reflection structural audits.
+Open PowerShell in this folder and run:
 
-| Path | Purpose |
-|---|---|
-| `mds_rotor_spn_study/run_mds_rotor_study.py` | Main study runner. |
-| `mds_rotor_spn_study/test_mds_rotor_study.py` | Unit tests. |
-| `mds_rotor_spn_study/mds_rotor_core.py` | GF(2^8) arithmetic, matrix orientations, schedules, and SPN core. |
-| `mds_rotor_spn_study/mds_rotor_milp.py` | Active-S-box MILP model and support-pattern enumeration. |
-| `mds_rotor_spn_study/mds_rotor_trails.py` | Differential and linear trail-search routines. |
-| `mds_rotor_spn_study/mds_rotor_schedule_optimizer.py` | Deterministic schedule-search heuristic. |
-| `mds_rotor_spn_study/slide_reflection_audit.py` | Structural slide and reflection audit. |
-| `mds_rotor_spn_study/results/standard_20260731/` | Validated standard-profile results. |
-
-Because every matrix orientation retains MDS branch number 5, the certified activity bounds are schedule-independent. Schedule effects, when observed, arise in coefficient-sensitive candidates, multiplicities, aggregate retained classes, or structural periodicity.
-
-The differential and linear beam-search outputs are heuristic candidates, not proofs of global optima. Captured low-active mass values are lower bounds on the probability mass retained by the pruned search, not complete differential-hull probabilities.
-
-## Repository structure
-
-```text
-Hill-Enigma-SPN-HESPN-COGGINS/
-├── README.md
-├── CITATION.cff
-├── LICENSE
-├── HESPNv4Rerun.py
-├── HESPNv4Diagnostics.py
-├── hespn_test_vector_v4.py
-├── matched_schedule_ablation/
-│   ├── matched_static_vs_rotor_experiment.py
-│   └── results/
-│       └── paper_20260731/
-└── mds_rotor_spn_study/
-    ├── run_mds_rotor_study.py
-    ├── test_mds_rotor_study.py
-    ├── requirements.txt
-    └── results/
-        └── standard_20260731/
+```powershell
+py -m pip install -r requirements.txt
 ```
 
-## Requirements
+Python 3.10 or newer is required. The code is compatible with the user's Python
+3.14 environment provided NumPy and SciPy wheels are available for that Python
+version.
 
-Use Python 3.10 or later when possible.
+## Run order
 
-The original HESPN v4 programs may require:
+### 1. Unit tests
 
-```bash
-python -m pip install argon2-cffi
+```powershell
+py -m unittest -v test_mds_rotor_study.py
 ```
 
-The MDS-rotor study requires NumPy and SciPy:
+### 2. Smoke study
 
-```bash
-python -m pip install -r mds_rotor_spn_study/requirements.txt
+```powershell
+py run_mds_rotor_study.py --profile smoke --out smoke_results
 ```
 
-Matplotlib is optional for plots produced by the matched-ablation program:
+The no-argument IDLE run also uses the smoke profile:
 
-```bash
-python -m pip install matplotlib
+```powershell
+py run_mds_rotor_study.py
 ```
 
-## How to run
+### 3. Standard study
 
-Clone the repository:
-
-```bash
-git clone https://github.com/ja9925ydbsu/Hill-Enigma-SPN-HESPN-COGGINS.git
-cd Hill-Enigma-SPN-HESPN-COGGINS
+```powershell
+py run_mds_rotor_study.py --profile standard --out standard_results
 ```
 
-### Original HESPN v4
+### 4. Paper study
 
-Run the main rerun program:
-
-```bash
-python HESPNv4Rerun.py
+```powershell
+py run_mds_rotor_study.py --profile paper --out paper_results
 ```
 
-Run the diagnostics program:
+The paper profile can be computationally expensive. Run the smoke and standard
+profiles first. Do not treat a silent interval during a beam search or MILP
+enumeration as a crash unless Python has stopped using CPU and no files are being
+updated for an extended period.
 
-```bash
-python HESPNv4Diagnostics.py
+## Useful partial runs
+
+Skip the optimizer and use the bundled period-8 seed schedule:
+
+```powershell
+py run_mds_rotor_study.py --profile standard --skip-optimizer --out standard_no_optimizer
 ```
 
-Generate the v4 normative test vector:
+Run only certified MILP results and audits:
 
-```bash
-python hespn_test_vector_v4.py
+```powershell
+py run_mds_rotor_study.py --profile smoke --skip-optimizer --skip-heuristic-trails --skip-mass --out milp_audit_only
 ```
 
-### Matched byte-local ablation
+Compare only static and rotor schedules:
 
-```bash
-cd matched_schedule_ablation
-python matched_static_vs_rotor_experiment.py
+```powershell
+py run_mds_rotor_study.py --profile standard --variants static,rotor --out static_vs_rotor
 ```
 
-This full experiment can require substantial runtime.
+## Slide and reflection attacks
 
-### Cross-byte MDS-rotor study
+The runner now writes a concise default report and preserves the complete detail separately:
 
-```bash
-cd mds_rotor_spn_study
-python -m pip install -r requirements.txt
-python -m unittest -v test_mds_rotor_study
-python run_mds_rotor_study.py --profile smoke --out smoke_results_local
+- `SLIDE_REFLECTION_SUMMARY.md` — shortest human-readable report;
+- `slide_and_reflection_summary.csv` — one comparison row per variant;
+- `slide_and_reflection_audit.json` — compact JSON with counts and representative examples;
+- `slide_and_reflection_audit_full.json` — complete orientation tables and pair lists for archival reproducibility.
+
+For an older results directory that contains only the long JSON, run:
+
+```powershell
+py .\compact_existing_audit.py .\standard_results_local
+Get-Content .\standard_results_local\SLIDE_REFLECTION_SUMMARY.md -Encoding utf8
 ```
 
-For the larger validated profile:
+This conversion takes only a moment and does not rerun the optimizer, MILP, or trail searches.
 
-```bash
-python run_mds_rotor_study.py --profile standard --out standard_results_local
-```
+The audits are intentionally conservative:
 
-The standard and paper profiles can require considerably more time and memory than the smoke profile.
+- **Slide audit:** finds the orientation schedule period, repeated structural round
+  descriptions, repeated full keyed rounds, and adjacent round-key distances. A
+  repeated public matrix schedule is not itself a slid pair; an exact classical
+  slide requires sufficient full-round self-similarity.
+- **Reflection audit:** checks schedule palindromes, reflected key equality,
+  transpose relations, and whether a forward orientation equals the inverse of a
+  reflected orientation. Flags indicate structures needing analysis, not a proven
+  attack.
 
-## Reproducibility
+## Starting-point relationship to the existing GitHub repository
 
-The repository includes deterministic test vectors, fixed seeds where appropriate, experiment metadata, CSV result tables, compact structural-audit summaries, and validated result directories.
+The package follows the existing HESPN repository's research conventions:
 
-The principal manuscript-support result directories are:
+- AES S-box and deterministic reference behavior from the HESPN test-vector work;
+- SHA-256 domain-separated round-key derivation style;
+- reproducible profiles, diagnostics, and CSV/JSON output organization;
+- matched control philosophy from the existing diagnostic and control experiments.
 
-```text
-matched_schedule_ablation/results/paper_20260731/
-mds_rotor_spn_study/results/standard_20260731/
-```
+The new GF(2^8) Cauchy-MDS layer, MILP model, beam searches, schedule optimizer,
+and slide/reflection audits are separate additions. The original HESPN v4 files
+should remain unchanged so prior manuscript results remain reproducible.
 
-## Interpretation boundaries
+## Initial smoke-run expectation
 
-The repository supports investigation of whether previously reported Hill-cipher matrix-element rotations can serve as scheduled modified mix layers in SPN architectures.
+A successful smoke run should verify the following certified activity bounds:
 
-It does not claim:
+| Rounds | Minimum active S-boxes | Differential upper bound | Linear-correlation upper bound |
+|---:|---:|---:|---:|
+| 2 | 5 | 2^-30 | 2^-15 |
+| 4 | 25 | 2^-150 | 2^-75 |
+| 6 | 30 | 2^-180 | 2^-90 |
+| 8 | 50 | 2^-300 | 2^-150 |
 
-- that HESPN is a replacement for AES;
-- that any included construction is deployment-ready;
-- that heuristic trail candidates are certified global optima;
-- that structural periodicity alone demonstrates a slide or reflection attack;
-- that one tested schedule is uniformly superior across all cryptanalytic metrics.
-
-## Citation
-
-Please cite this software using the metadata in [`CITATION.cff`](CITATION.cff). When the citation file is present in the repository root, GitHub may also display a **Cite this repository** option.
-
-## License
-
-This repository is licensed under the MIT License. See [`LICENSE`](LICENSE) for details.
-
-## Author and concept
-
-**Porter E. Coggins, III**  
-Repository: `ja9925ydbsu/Hill-Enigma-SPN-HESPN-COGGINS`
-
-## Disclaimer
-
-This code is provided for research and reproducibility purposes. It has not been independently audited for production cryptographic use.
+Ties among schedule-specific heuristic metrics are possible and scientifically
+meaningful. The study is designed to report them rather than force a positive
+rotor conclusion.

@@ -1,0 +1,5 @@
+rounds,minimum_active_sboxes,enumerated_patterns,cap,cap_reached,exact_count,distinct_on
+2,5,100,100,True,,x
+4,25,100,100,True,,x
+6,30,100,100,True,,x
+8,50,100,100,True,,x

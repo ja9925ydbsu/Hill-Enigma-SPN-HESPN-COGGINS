@@ -1,0 +1,539 @@
+{
+  "format_version": 2,
+  "detail_policy": "Compact audit: long pair lists are replaced by counts and representative examples (maximum 8). The complete audit is stored separately.",
+  "variants": {
+    "static": {
+      "rounds": 16,
+      "schedule": {
+        "minimal_orientation_period": 1,
+        "unique_orientation_row_count": 1,
+        "unique_orientation_rows": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_palindrome": true
+      },
+      "slide": {
+        "structural_repeat_pair_count": 120,
+        "structural_repeat_pair_examples": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "full_keyed_repeat_pair_count": 0,
+        "full_keyed_repeat_pair_examples": [],
+        "all_round_keys_distinct": true,
+        "adjacent_round_key_hamming": {
+          "minimum": 58,
+          "maximum": 74,
+          "mean": 65.133
+        },
+        "assessment": "Classical exact slide self-similarity is absent because no keyed round fingerprints repeat.  Structural schedule repetition remains visible and should be considered in advanced slide/related-key analysis."
+      },
+      "reflection": {
+        "palindromic_reflected_pair_count": 8,
+        "palindromic_reflected_pair_examples": [
+          [
+            0,
+            15
+          ],
+          [
+            1,
+            14
+          ],
+          [
+            2,
+            13
+          ],
+          [
+            3,
+            12
+          ],
+          [
+            4,
+            11
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "inverse_related_position_count": 0,
+        "inverse_related_position_examples": [],
+        "transpose_related_position_count": 0,
+        "transpose_related_position_examples": [],
+        "equal_reflected_round_key_count": 0,
+        "equal_reflected_round_key_examples": [],
+        "reflected_round_key_xor_hamming": {
+          "minimum": 53,
+          "maximum": 71,
+          "mean": 61.5
+        },
+        "fixed_round_order_is_self_inverse": false,
+        "assessment": "No exact encryption/decryption reflection was found: the round operation order is not self-inverse, reflected round keys are distinct, and no full inverse-matrix alignment spans the schedule.  Any partial palindromic or transpose relations are structural flags, not a demonstrated attack."
+      }
+    },
+    "rotor": {
+      "rounds": 16,
+      "schedule": {
+        "minimal_orientation_period": 4,
+        "unique_orientation_row_count": 4,
+        "unique_orientation_rows": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3,
+            0
+          ],
+          [
+            2,
+            3,
+            0,
+            1
+          ],
+          [
+            3,
+            0,
+            1,
+            2
+          ]
+        ],
+        "exact_palindrome": false
+      },
+      "slide": {
+        "structural_repeat_pair_count": 24,
+        "structural_repeat_pair_examples": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            12
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            13
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            10
+          ]
+        ],
+        "full_keyed_repeat_pair_count": 0,
+        "full_keyed_repeat_pair_examples": [],
+        "all_round_keys_distinct": true,
+        "adjacent_round_key_hamming": {
+          "minimum": 58,
+          "maximum": 74,
+          "mean": 65.133
+        },
+        "assessment": "Classical exact slide self-similarity is absent because no keyed round fingerprints repeat.  Structural schedule repetition remains visible and should be considered in advanced slide/related-key analysis."
+      },
+      "reflection": {
+        "palindromic_reflected_pair_count": 0,
+        "palindromic_reflected_pair_examples": [],
+        "inverse_related_position_count": 0,
+        "inverse_related_position_examples": [],
+        "transpose_related_position_count": 0,
+        "transpose_related_position_examples": [],
+        "equal_reflected_round_key_count": 0,
+        "equal_reflected_round_key_examples": [],
+        "reflected_round_key_xor_hamming": {
+          "minimum": 53,
+          "maximum": 71,
+          "mean": 61.5
+        },
+        "fixed_round_order_is_self_inverse": false,
+        "assessment": "No exact encryption/decryption reflection was found: the round operation order is not self-inverse, reflected round keys are distinct, and no full inverse-matrix alignment spans the schedule.  Any partial palindromic or transpose relations are structural flags, not a demonstrated attack."
+      }
+    },
+    "round_only": {
+      "rounds": 16,
+      "schedule": {
+        "minimal_orientation_period": 4,
+        "unique_orientation_row_count": 4,
+        "unique_orientation_rows": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            3,
+            3,
+            3,
+            3
+          ]
+        ],
+        "exact_palindrome": false
+      },
+      "slide": {
+        "structural_repeat_pair_count": 24,
+        "structural_repeat_pair_examples": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            12
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            13
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            10
+          ]
+        ],
+        "full_keyed_repeat_pair_count": 0,
+        "full_keyed_repeat_pair_examples": [],
+        "all_round_keys_distinct": true,
+        "adjacent_round_key_hamming": {
+          "minimum": 58,
+          "maximum": 74,
+          "mean": 65.133
+        },
+        "assessment": "Classical exact slide self-similarity is absent because no keyed round fingerprints repeat.  Structural schedule repetition remains visible and should be considered in advanced slide/related-key analysis."
+      },
+      "reflection": {
+        "palindromic_reflected_pair_count": 0,
+        "palindromic_reflected_pair_examples": [],
+        "inverse_related_position_count": 0,
+        "inverse_related_position_examples": [],
+        "transpose_related_position_count": 0,
+        "transpose_related_position_examples": [],
+        "equal_reflected_round_key_count": 0,
+        "equal_reflected_round_key_examples": [],
+        "reflected_round_key_xor_hamming": {
+          "minimum": 53,
+          "maximum": 71,
+          "mean": 61.5
+        },
+        "fixed_round_order_is_self_inverse": false,
+        "assessment": "No exact encryption/decryption reflection was found: the round operation order is not self-inverse, reflected round keys are distinct, and no full inverse-matrix alignment spans the schedule.  Any partial palindromic or transpose relations are structural flags, not a demonstrated attack."
+      }
+    },
+    "position_only": {
+      "rounds": 16,
+      "schedule": {
+        "minimal_orientation_period": 1,
+        "unique_orientation_row_count": 1,
+        "unique_orientation_rows": [
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ],
+        "exact_palindrome": true
+      },
+      "slide": {
+        "structural_repeat_pair_count": 120,
+        "structural_repeat_pair_examples": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "full_keyed_repeat_pair_count": 0,
+        "full_keyed_repeat_pair_examples": [],
+        "all_round_keys_distinct": true,
+        "adjacent_round_key_hamming": {
+          "minimum": 58,
+          "maximum": 74,
+          "mean": 65.133
+        },
+        "assessment": "Classical exact slide self-similarity is absent because no keyed round fingerprints repeat.  Structural schedule repetition remains visible and should be considered in advanced slide/related-key analysis."
+      },
+      "reflection": {
+        "palindromic_reflected_pair_count": 8,
+        "palindromic_reflected_pair_examples": [
+          [
+            0,
+            15
+          ],
+          [
+            1,
+            14
+          ],
+          [
+            2,
+            13
+          ],
+          [
+            3,
+            12
+          ],
+          [
+            4,
+            11
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "inverse_related_position_count": 0,
+        "inverse_related_position_examples": [],
+        "transpose_related_position_count": 0,
+        "transpose_related_position_examples": [],
+        "equal_reflected_round_key_count": 0,
+        "equal_reflected_round_key_examples": [],
+        "reflected_round_key_xor_hamming": {
+          "minimum": 53,
+          "maximum": 71,
+          "mean": 61.5
+        },
+        "fixed_round_order_is_self_inverse": false,
+        "assessment": "No exact encryption/decryption reflection was found: the round operation order is not self-inverse, reflected round keys are distinct, and no full inverse-matrix alignment spans the schedule.  Any partial palindromic or transpose relations are structural flags, not a demonstrated attack."
+      }
+    },
+    "optimized": {
+      "rounds": 16,
+      "schedule": {
+        "minimal_orientation_period": 8,
+        "unique_orientation_row_count": 7,
+        "unique_orientation_rows": [
+          [
+            0,
+            3,
+            1,
+            2
+          ],
+          [
+            2,
+            3,
+            0,
+            1
+          ],
+          [
+            3,
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            3,
+            0,
+            2
+          ],
+          [
+            2,
+            1,
+            3,
+            0
+          ],
+          [
+            1,
+            0,
+            2,
+            3
+          ],
+          [
+            3,
+            1,
+            0,
+            2
+          ]
+        ],
+        "exact_palindrome": false
+      },
+      "slide": {
+        "structural_repeat_pair_count": 12,
+        "structural_repeat_pair_examples": [
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            13
+          ],
+          [
+            5,
+            15
+          ]
+        ],
+        "full_keyed_repeat_pair_count": 0,
+        "full_keyed_repeat_pair_examples": [],
+        "all_round_keys_distinct": true,
+        "adjacent_round_key_hamming": {
+          "minimum": 58,
+          "maximum": 74,
+          "mean": 65.133
+        },
+        "assessment": "Classical exact slide self-similarity is absent because no keyed round fingerprints repeat.  Structural schedule repetition remains visible and should be considered in advanced slide/related-key analysis."
+      },
+      "reflection": {
+        "palindromic_reflected_pair_count": 0,
+        "palindromic_reflected_pair_examples": [],
+        "inverse_related_position_count": 0,
+        "inverse_related_position_examples": [],
+        "transpose_related_position_count": 0,
+        "transpose_related_position_examples": [],
+        "equal_reflected_round_key_count": 0,
+        "equal_reflected_round_key_examples": [],
+        "reflected_round_key_xor_hamming": {
+          "minimum": 53,
+          "maximum": 71,
+          "mean": 61.5
+        },
+        "fixed_round_order_is_self_inverse": false,
+        "assessment": "No exact encryption/decryption reflection was found: the round operation order is not self-inverse, reflected round keys are distinct, and no full inverse-matrix alignment spans the schedule.  Any partial palindromic or transpose relations are structural flags, not a demonstrated attack."
+      }
+    }
+  }
+}

@@ -32,8 +32,6 @@ These checks do not establish full-cipher security or isolate a benefit caused b
 
 Weight-one transfer analysis, matched schedule comparisons, optimized differential and linear trails, boomerang analysis, NIST tests, algebraic-degree screens, cross-byte MDS experiments, and broader slide, reflection, and related-key cryptanalysis are outside the construction question. Historical files covering those topics remain available for reproducibility but are not part of the CiC evidentiary chain.
 
-## Submission source
+## Public repository versus submission package
 
-Preferred current IACR source: `cic_submission/iacrj/main.tex`.
-
-Compatibility fallback: `cic_submission/iacrcc/main.tex`.
+The public repository contains the executable research code, historical reproducibility assets, scope documentation, and the two machine-readable CiC verification datasets. The complete `iacrj` and `iacrcc` manuscript submission packages are maintained separately as submission artifacts and are not mirrored here by default. This avoids treating a public code repository as the journal submission archive.

@@ -1,214 +1,81 @@
-# GF(2^8) MDS-Rotor SPN Study
+# Hill-Enigma-SPN (HESPN): Rotor-Scheduled Hill Matrices as an SPN Mix Layer
 
-This package is a separate research branch for testing whether previously reported
-Hill-matrix element rotations can serve as a **cross-byte modified mix layer** in a
-substitution-permutation network (SPN).
+This repository supports the construction study **Hill-Enigma-SPN: Rotor-Scheduled Hill Matrices as a Mix Layer in an Experimental SPN**.
 
-It is **not** a proposal to replace AES, and it does not claim that the experimental
-SPN is deployment-ready or completely secure. The purpose is to test the mix-layer
-hypothesis under stronger conditions than the byte-local 8x8 GF(2) HESPN layer.
+The research question is deliberately narrow: **can matrix-element rotations previously reported for Hill-cipher variants be specified, filtered, scheduled, inverted, and used as the linear mix layer of a substitution-permutation network (SPN)?**
 
-## What changed from HESPN v4
+HESPN is the experimental harness used to answer that construction question. It is not presented as a deployment-ready cipher, a replacement for AES or another standardized primitive, or evidence that a public orientation schedule is more secure than a static matrix layer.
 
-The published HESPN v4 experiment applies an 8x8 binary matrix independently to
-each byte. This study instead uses an asymmetric 4x4 Cauchy maximum-distance-
-separable (MDS) matrix over GF(2^8), so each matrix application spans four AES-sized
-S-box inputs. Every 90-degree matrix-element orientation is verified to remain MDS
-with symbol branch number 5.
+## What is being studied
 
-The asymmetric Cauchy matrix is the default rather than the circulant AES
-MixColumns matrix. This avoids making the rotor comparison depend on an unusually
-symmetric base matrix. The AES matrix remains documented in `mds_rotor_core.py` as
-a future control.
+The candidate mix layer uses sixteen key-derived 8 x 8 binary seed matrices over GF(2). Each seed is accepted only after verification of invertibility and a local branch-number floor. A public four-orientation schedule selects a rotated matrix by round and byte position. A fixed, well-characterized 8-bit S-box and explicit state-motion steps provide the surrounding SPN structure so that the linear layer can be exercised and inverted in a complete iterated harness.
 
-## Five matched schedules
+The fixed nonlinear component is a methodological reference, not part of the novelty claim. References to Rijndael or MixColumns are used only to locate the construction within familiar SPN terminology and to distinguish local bit-level branch number over GF(2) from cross-byte MDS diffusion over GF(2^8).
 
-Only the public orientation schedule changes:
+## Construction-level claims supported here
 
-1. `static`: orientation 0 in every round and column.
-2. `rotor`: `(round + column) mod 4`.
-3. `round_only`: `round mod 4` in every column.
-4. `position_only`: `column mod 4` in every round.
-5. `optimized`: a period-8 schedule selected by a deterministic heuristic search.
+The current Communications in Cryptology manuscript and the submission-aligned files under `cic_submission/` support the following limited claims:
 
-The S-box, ShiftRows, MDS seed matrix, round-key derivation, input panels, and
-analysis settings are held fixed.
+1. Matrix rotation preserves invertibility for the scheduled family.
+2. The four orientations reduce to two independent branch-number checks, B(M) and B(M^T).
+3. Accepted seeds satisfy a local branch-number floor B >= 4 for every scheduled orientation.
+4. The public schedule uses every labeled seed-orientation pair equally across sixteen rounds.
+5. Every round and the complete sixteen-round mapping are reversible.
+6. The rejection filter is feasible for the reported reference setup.
+7. Reference vectors permit independent implementation checking.
+8. Exact local one-bit spreading and a fresh plaintext-avalanche experiment provide bounded integration checks, not security proofs.
 
-## Analyses included
+For the reference configuration, all 64 oriented matrices have branch number 4. Across the 512 exact one-bit matrix applications, output weight ranges from 3 to 8 bits with mean 4.5390625. In the CiC-specific plaintext-avalanche integration run, the mean ciphertext Hamming distance reaches 63.9664 bits at sixteen rounds, with 95 percent confidence interval [63.81093, 64.12187]. See `cic_submission/VERIFICATION_METRICS_NOTE.md` and `cic_submission/metrics/`.
 
-1. **Minimum active S-box count** over 2, 4, 6, and 8 rounds.
-2. **Count of minimum-activity support patterns**, using capped MILP enumeration.
-3. **Differential trail bound and candidate search**:
-   - certified bound from the active-S-box minimum and AES maximum differential
-     probability;
-   - coefficient-sensitive beam-search candidates using the exact AES DDT.
-4. **Linear-correlation bound and candidate search**:
-   - certified bound from the active-S-box minimum and AES maximum correlation;
-   - coefficient-sensitive beam-search candidates using the exact AES LAT.
-5. **Aggregate low-weight differential class estimate**, reported as captured mass
-   under explicit beam and transition pruning.
-6. **MILP trail search**, solved with SciPy/HiGHS and exported as solver-neutral LP
-   files for CBC, Gurobi, CPLEX, or similar solvers.
+## What this repository does not claim
 
-The package also includes:
+The current CiC construction paper does **not** establish a deployment security level or a nontrivial multi-round differential or linear bound. It does not claim that rotor scheduling improves security relative to a static orientation.
 
-- a **slide self-similarity audit**;
-- a **reflection/inverse-symmetry audit**;
-- a deterministic schedule optimizer;
-- algebraic and encryption/decryption self-tests;
-- CSV, JSON, LP, and Markdown result output.
+The following topics are deliberately outside the CiC construction question:
 
-## Important interpretation point
+- exact weight-one recurrence and transfer analysis;
+- matched static-versus-scheduled ablations;
+- optimized differential or linear trail searches;
+- random-mask linear screens;
+- sampled differential collision screens;
+- boomerang or returned-difference analysis;
+- NIST statistical testing as security evidence;
+- algebraic-degree screening;
+- cross-byte MDS boundary experiments;
+- related-key, slide, or reflection cryptanalysis beyond limited structural observations.
 
-Since every orientation is MDS with branch number 5, the certified wide-trail
-active-S-box bounds are necessarily the same for all schedules. A rotor benefit, if
-one exists, must appear in coefficient-sensitive trail multiplicities, aggregate
-trail classes, related-key/slide structure, or other multi-round properties—not in
-the one-round branch number itself.
+Older files covering some of these topics remain in the repository for historical reproducibility. They should not be read as evidence supporting the CiC manuscript's construction claims. See `docs/LEGACY_AND_OUT_OF_SCOPE_ANALYSES.md`.
 
-The beam searches are heuristic. Their candidate trail values are achieved by
-retained trails but are not global optimum proofs. The MILP active-S-box bounds are
-the certified results.
+## Rotor terminology, reflection, and slide structure
 
-## Files
+The Enigma analogy refers only to public stepping among matrix orientations. HESPN contains no reflector, and its round operation order is not self-inverse. The reference configuration also uses distinct round keys, so the period-four orientation schedule should not be confused with exact repetition of identical keyed rounds. These are structural observations only, not proofs of resistance to reflection, slide, or related-key attacks.
 
-- `mds_rotor_core.py` — GF(2^8), Cauchy MDS matrix, rotations, schedules, SPN,
-  encryption/decryption, and self-checks.
-- `mds_rotor_milp.py` — certified activity MILP, capped optimum-pattern
-  enumeration, and LP export.
-- `mds_rotor_trails.py` — AES DDT/LAT generation, differential/linear beam search,
-  and aggregate low-active mass search.
-- `mds_rotor_schedule_optimizer.py` — deterministic period-8 schedule search.
-- `slide_reflection_audit.py` — detailed and compact slide/reflection diagnostics.
-- `compact_existing_audit.py` — converts an already-completed verbose audit into compact JSON, CSV, and Markdown without rerunning the experiment.
-- `run_mds_rotor_study.py` — main command-line runner.
-- `test_mds_rotor_study.py` — unit tests.
-- `run_smoke_test.bat`, `run_standard_study.bat`, `run_paper_study.bat` — Windows
-  launchers.
-- `run_study.ps1` — PowerShell launcher with a selectable profile.
+## Repository layout
 
-## Installation on Windows
+### Current CiC submission materials
 
-Open PowerShell in this folder and run:
+- `cic_submission/` contains the submission-aligned source notes and verification data for the current construction paper.
+- `cic_submission/metrics/` contains the two machine-readable construction-verification datasets added for the current revision.
+- `cic_submission/VERIFICATION_METRICS_NOTE.md` documents the purpose, method, and interpretation boundary of those measurements.
 
-```powershell
-py -m pip install -r requirements.txt
-```
+### Historical implementation and experiments
 
-Python 3.10 or newer is required. The code is compatible with the user's Python
-3.14 environment provided NumPy and SciPy wheels are available for that Python
-version.
+The existing root-level HESPN scripts, result files, and `legacy_hespn_v4/` materials are retained to preserve prior reproducibility. Their presence does not enlarge the scope of the current CiC paper. A later repository-cleanup pass may move additional historical files beneath an archive directory without altering their content.
 
-## Run order
+## Preferred manuscript format
 
-### 1. Unit tests
+The current manuscript is maintained in parallel IACR formats, with `iacrj` as the preferred current Communications in Cryptology class and `iacrcc` retained as a compatibility fallback. The repository's `cic_submission/` notes identify the current source set and scope.
 
-```powershell
-py -m unittest -v test_mds_rotor_study.py
-```
+## Reproducibility boundary
 
-### 2. Smoke study
+The repository separates three kinds of evidence:
 
-```powershell
-py run_mds_rotor_study.py --profile smoke --out smoke_results
-```
+- **formal construction properties**, such as invertibility and the local branch-number floor;
+- **implementation checks**, such as reference vectors and round-trip verification;
+- **bounded empirical integration checks**, such as local one-bit spreading and plaintext avalanche.
 
-The no-argument IDLE run also uses the smoke profile:
+None of these categories should be interpreted as a complete cryptanalysis of the resulting permutation.
 
-```powershell
-py run_mds_rotor_study.py
-```
+## License
 
-### 3. Standard study
-
-```powershell
-py run_mds_rotor_study.py --profile standard --out standard_results
-```
-
-### 4. Paper study
-
-```powershell
-py run_mds_rotor_study.py --profile paper --out paper_results
-```
-
-The paper profile can be computationally expensive. Run the smoke and standard
-profiles first. Do not treat a silent interval during a beam search or MILP
-enumeration as a crash unless Python has stopped using CPU and no files are being
-updated for an extended period.
-
-## Useful partial runs
-
-Skip the optimizer and use the bundled period-8 seed schedule:
-
-```powershell
-py run_mds_rotor_study.py --profile standard --skip-optimizer --out standard_no_optimizer
-```
-
-Run only certified MILP results and audits:
-
-```powershell
-py run_mds_rotor_study.py --profile smoke --skip-optimizer --skip-heuristic-trails --skip-mass --out milp_audit_only
-```
-
-Compare only static and rotor schedules:
-
-```powershell
-py run_mds_rotor_study.py --profile standard --variants static,rotor --out static_vs_rotor
-```
-
-## Slide and reflection attacks
-
-The runner now writes a concise default report and preserves the complete detail separately:
-
-- `SLIDE_REFLECTION_SUMMARY.md` — shortest human-readable report;
-- `slide_and_reflection_summary.csv` — one comparison row per variant;
-- `slide_and_reflection_audit.json` — compact JSON with counts and representative examples;
-- `slide_and_reflection_audit_full.json` — complete orientation tables and pair lists for archival reproducibility.
-
-For an older results directory that contains only the long JSON, run:
-
-```powershell
-py .\compact_existing_audit.py .\standard_results_local
-Get-Content .\standard_results_local\SLIDE_REFLECTION_SUMMARY.md -Encoding utf8
-```
-
-This conversion takes only a moment and does not rerun the optimizer, MILP, or trail searches.
-
-The audits are intentionally conservative:
-
-- **Slide audit:** finds the orientation schedule period, repeated structural round
-  descriptions, repeated full keyed rounds, and adjacent round-key distances. A
-  repeated public matrix schedule is not itself a slid pair; an exact classical
-  slide requires sufficient full-round self-similarity.
-- **Reflection audit:** checks schedule palindromes, reflected key equality,
-  transpose relations, and whether a forward orientation equals the inverse of a
-  reflected orientation. Flags indicate structures needing analysis, not a proven
-  attack.
-
-## Starting-point relationship to the existing GitHub repository
-
-The package follows the existing HESPN repository's research conventions:
-
-- AES S-box and deterministic reference behavior from the HESPN test-vector work;
-- SHA-256 domain-separated round-key derivation style;
-- reproducible profiles, diagnostics, and CSV/JSON output organization;
-- matched control philosophy from the existing diagnostic and control experiments.
-
-The new GF(2^8) Cauchy-MDS layer, MILP model, beam searches, schedule optimizer,
-and slide/reflection audits are separate additions. The original HESPN v4 files
-should remain unchanged so prior manuscript results remain reproducible.
-
-## Initial smoke-run expectation
-
-A successful smoke run should verify the following certified activity bounds:
-
-| Rounds | Minimum active S-boxes | Differential upper bound | Linear-correlation upper bound |
-|---:|---:|---:|---:|
-| 2 | 5 | 2^-30 | 2^-15 |
-| 4 | 25 | 2^-150 | 2^-75 |
-| 6 | 30 | 2^-180 | 2^-90 |
-| 8 | 50 | 2^-300 | 2^-150 |
-
-Ties among schedule-specific heuristic metrics are possible and scientifically
-meaningful. The study is designed to report them rather than force a positive
-rotor conclusion.
+The MIT License applies to the software in this repository. Manuscript text, figures, submission files, and result data should be cited and reused according to their applicable publication or repository terms.

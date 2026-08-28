@@ -1,0 +1,23 @@
+{
+  "master_key": "15C6D44AA434C83CB8C87A63969EC64513E2446B37DE5AC60B513C99FC1756E3",
+  "seed_attempts": [143, 93, 97, 114, 16, 278, 160, 70, 59, 37, 42, 335, 107, 10, 9, 42],
+  "seed_attempts_summary": {"mean": 100.75, "median": 81.5, "min": 9, "max": 335, "sum": 1612},
+  "orbit_sizes": {"4": 16},
+  "branch_numbers": {"4": 64},
+  "onebit_output_weight": {
+    "n": 512,
+    "min": 3,
+    "mean": 4.5390625,
+    "median": 4.0,
+    "max": 8,
+    "counts": {"3": 108, "4": 160, "5": 144, "6": 64, "7": 32, "8": 4}
+  },
+  "row_weight": {
+    "n": 512,
+    "min": 3,
+    "mean": 4.5390625,
+    "median": 4.0,
+    "max": 8,
+    "counts": {"3": 108, "4": 160, "5": 144, "6": 64, "7": 32, "8": 4}
+  }
+}

@@ -1,45 +1,39 @@
-# Project status after validated smoke run
+# Project status: CiC construction-study alignment
 
-The code package is complete enough for a first controlled run and passes all
-included unit tests.
+Updated: 2026-08-28
 
-## Validated algebraic properties
+The repository is aligned with the Communications in Cryptology manuscript **Hill-Enigma-SPN: Rotor-Scheduled Hill Matrices as a Mix Layer in an Experimental SPN**.
 
-- The default base matrix is an asymmetric 4x4 Cauchy matrix over GF(2^8).
-- All four 90-degree element orientations are distinct.
-- All four orientations are invertible.
-- All four orientations are MDS with symbol branch number 5.
-- Encryption/decryption round trips pass for all five schedule variants.
+## Current research claim
 
-## Certified MILP results
+The current paper asks whether previously reported Hill-matrix element rotations can be used as a reversible, locally diffusion-bounded linear mix layer in an SPN. It does not propose HESPN as a deployment-ready cipher and does not claim that public rotor scheduling provides a security advantage over a static orientation.
 
-| Rounds | Minimum active S-boxes | Differential upper bound | Linear-correlation upper bound |
-|---:|---:|---:|---:|
-| 2 | 5 | 2^-30 | 2^-15 |
-| 4 | 25 | 2^-150 | 2^-75 |
-| 6 | 30 | 2^-180 | 2^-90 |
-| 8 | 50 | 2^-300 | 2^-150 |
+## Verified construction properties
 
-These bounds are schedule-independent because every orientation has the same MDS
-branch number. This is expected and is not evidence against the rotor hypothesis.
-It means the schedule must be assessed through coefficient-sensitive properties.
+- Sixteen accepted 8 x 8 binary seed matrices are used in the reference configuration.
+- Every scheduled orientation is invertible.
+- The four orientations require only two independent branch-number evaluations, B(M) and B(M^T).
+- Every scheduled orientation satisfies the local floor B >= 4.
+- The sixteen-round public schedule uses all 64 labeled seed-orientation pairs equally.
+- The complete round function has an exact inverse.
+- Reference vectors check bit packing, round order, matrix application, substitution, routing, and decryption.
+- The rejection filter is feasible for the reported prototype setup.
 
-## Smoke-profile coefficient-sensitive results
+## CiC-specific empirical checks
 
-At the deliberately small smoke settings, all five schedules tied on the retained
-best differential and linear trail magnitudes, and tied on captured low-active
-mass. These are heuristic, heavily pruned searches. The result may indicate true
-invariance in the tested class or simply insufficient search depth. The standard
-and paper profiles are provided to distinguish those possibilities.
+The current revision adds only two bounded integration checks:
 
-## Slide and reflection status
+1. Exact local one-bit spreading over all 64 oriented matrices under the reference key. Output weight ranges from 3 to 8 bits with mean 4.5390625.
+2. A fresh plaintext-avalanche integration run using 5,000 deterministic pairs per tested round count. At sixteen rounds the mean ciphertext Hamming distance is 63.9664 bits with 95 percent confidence interval [63.81093, 64.12187].
 
-- Static and position-only schedules have period 1 at the orientation-row level.
-- Rotor and round-only schedules have period 4.
-- The bundled optimized schedule has period 8.
-- No exact full keyed round fingerprint repeats because SHA-256-derived round keys
-  are distinct in the tested 16-round instance.
-- No exact encryption/decryption reflection was found by the structural audit.
+These checks do not establish full-cipher security or isolate a benefit caused by orientation scheduling.
 
-These are preliminary structural audits, not proofs of resistance to advanced
-slide, related-key, or reflection attacks.
+## Analyses outside the current CiC paper
+
+Weight-one transfer analysis, matched schedule comparisons, optimized differential and linear trails, boomerang analysis, NIST tests, algebraic-degree screens, cross-byte MDS experiments, and broader slide, reflection, and related-key cryptanalysis are outside the construction question. Historical files covering those topics remain available for reproducibility but are not part of the CiC evidentiary chain.
+
+## Submission source
+
+Preferred current IACR source: `cic_submission/iacrj/main.tex`.
+
+Compatibility fallback: `cic_submission/iacrcc/main.tex`.

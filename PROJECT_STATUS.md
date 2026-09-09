@@ -2,11 +2,13 @@
 
 Updated: 2026-09-09
 
-The current manuscript is being prepared for submission to Springer Nature's **International Journal of Information Security** under the approved title **Rotor-Scheduled Hill Matrices as a Linear Layer in an Experimental Substitution-Permutation Network**.
+The current manuscript is being prepared for submission to Springer Nature's **International Journal of Information Security** under the title **Rotor-Scheduled Hill Matrices as a Linear Layer in an Experimental Substitution-Permutation Network**.
 
 ## Current research claim
 
-The paper asks whether previously reported Hill-matrix element rotations can be extended to order eight and used as a reversible, locally diffusion-bounded linear layer in an experimental SPN. It does not propose HESPN as a deployment-ready cipher and does not claim that public rotor scheduling provides a security advantage over a static orientation.
+The paper asks whether previously reported Hill-matrix element rotations can be extended from order two to order eight and used as a reversible, locally diffusion-bounded linear layer in a byte-oriented SPN. The order-eight step is architecturally significant because an 8 x 8 binary matrix acts directly on one byte, allowing the mechanism to be scheduled at the same granularity as an 8-bit substitution layer.
+
+The paper focuses on construction feasibility: it establishes the rotation algebra, deterministic admissible-matrix setup, public orientation schedule, exact invertibility, local branch-number floor, and integration into a complete experimental SPN harness. Detailed differential, linear, boomerang, related-key, wide-trail, and matched static-schedule analyses remain follow-on work.
 
 ## Verified construction properties
 
@@ -14,27 +16,26 @@ The paper asks whether previously reported Hill-matrix element rotations can be 
 - Every scheduled orientation is invertible.
 - The four orientations require only two independent branch-number evaluations, B(M) and B(M^T).
 - Every scheduled orientation satisfies the local floor B >= 4.
-- Branch-number admissibility is evaluated from the defining condition; the later one-bit profile is not used as a branch-number proof.
-- Candidate generation includes an explicit deterministic counter, so rejection produces a defined new hash input.
 - The sixteen-round public schedule uses all 64 labeled seed-orientation pairs equally.
 - The complete round function has an exact inverse.
 - Reference vectors check bit packing, round order, matrix application, substitution, routing, and decryption.
+- The rejection filter is feasible for the reported prototype setup.
 
-## Claim boundary emphasized for IJIS
-
-The B >= 4 result is a **byte-local GF(2) branch-number guarantee**. It is not a cross-byte MDS result over GF(2^8), a wide-trail bound, or a nontrivial lower bound on the number of active S-boxes across multiple rounds. No maximum differential probability or maximum linear correlation bound is inferred from this local criterion.
-
-The manuscript therefore keeps active-S-box/MILP analysis, optimized differential and linear trail searches, boomerang/rectangle analysis, related-key analysis, and matched static-versus-scheduled comparisons outside the present construction-feasibility claim. These are identified as separate cryptanalytic questions rather than silently replaced by empirical proxies.
-
-## Retained bounded integration checks
+## Retained bounded empirical checks
 
 1. Exact local one-bit spreading over all 64 oriented matrices under the reference key. Output weight ranges from 3 to 8 bits with mean 4.5390625.
 2. A plaintext-avalanche integration run using 5,000 deterministic pairs per tested round count. At sixteen rounds the mean ciphertext Hamming distance is 63.9664 bits with 95 percent confidence interval [63.81093, 64.12187].
 
-These checks do not establish full-cipher security or isolate a benefit caused by orientation scheduling.
+The avalanche statistic verifies propagation within the completed implementation; it is not used as evidence of differential or linear resistance.
+
+## Principal limitations
+
+- The candidate matrix layer is byte-local rather than cross-byte.
+- No nontrivial multi-round active-S-box lower bound is established.
+- No matched static-versus-rotor schedule comparison is included in this construction-feasibility paper.
 
 ## Public repository versus journal submission package
 
-The public repository contains executable research code, historical reproducibility assets, scope documentation, and the machine-readable verification datasets developed during the final Revision 5 preparation. The complete Springer Nature / IJIS manuscript package and cover letter are maintained separately as author-side submission artifacts.
+The public repository contains executable research code, historical reproducibility assets, scope documentation, and the machine-readable verification datasets developed during the final Revision 5 preparation. The complete Springer Nature / IJIS manuscript package and cover letter are maintained separately as author-side submission artifacts and are not mirrored in the public code repository by default.
 
-The substantive manuscript basis remains the final Revision 5 construction-feasibility paper dated 28 August 2026. The IJIS work is a journal-format conversion plus reviewer-facing clarification of the specification and claim boundary, not a return to the broader July HESPN manuscript.
+The substantive manuscript master remains the final Revision 5 construction-feasibility line, now revised for IJIS with stronger order-eight architectural motivation, a dedicated limitations subsection, more precise avalanche interpretation, and enlarged figures. This is a journal-format and clarity revision, not a return to the broader July HESPN manuscript.

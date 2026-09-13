@@ -13,7 +13,7 @@
 #   seeds      : SHA-256(K || b"MATRIX" || j || counter),
 #                j 1-byte, counter 4-byte big-endian
 #   stub KDF   : K = SHA-256(password_utf8 || salt)  [test only;
-#                production uses Argon2id t=3, m=65536, p=2]
+#                HESPN itself accepts a 256-bit master key K]
 # ============================================================
 
 import hashlib
@@ -92,7 +92,6 @@ def gf2_mat_rank_8(rows) -> int:
     A = rows[:]
     rank = 0
     for col in range(8):
-        # col j=0 corresponds to bit position (7-0)=7 in the byte
         bit = 1 << (7 - col)
         pivot = None
         for r in range(rank, 8):
@@ -109,29 +108,18 @@ def gf2_mat_rank_8(rows) -> int:
     return rank
 
 def is_invertible_8(rows) -> bool:
-    """
-    Return True iff 8x8 GF(2) matrix has full rank (rank=8),
-    i.e. is invertible over GF(2).
-    """
+    """Return True iff the 8x8 GF(2) matrix has full rank."""
     return gf2_mat_rank_8(rows) == 8
 
 def apply_matrix_8(rows, x: int) -> int:
     """
-    Multiply input byte x by 8x8 GF(2) matrix M.
-
-    MSB-first convention:
-      v(x)[j] = (x >> (7-j)) & 1         (input vector)
-      M_ij    = (rows[i] >> (7-j)) & 1   (matrix entries)
-      v(y)[i] = XOR_j M_ij * v(x)[j]
-              = popcount(rows[i] AND x) mod 2
-
-    Returns output byte y such that v(y) = M * v(x) over GF(2).
+    Multiply input byte x by 8x8 GF(2) matrix M using the
+    manuscript's MSB-first convention.
     """
     xv = byte_to_vec(x)
     out_bits = []
     for row in rows:
         rv = byte_to_vec(row)
-        # Inner product of row i and input vector over GF(2)
         bit = 0
         for a, b in zip(rv, xv):
             bit ^= (a & b)
@@ -139,28 +127,17 @@ def apply_matrix_8(rows, x: int) -> int:
     return vec_to_byte(out_bits)
 
 def hamming_weight8(x: int) -> int:
-    """Return Hamming weight (number of 1-bits) of byte x."""
     return x.bit_count()
 
 def apply_matrix_8_fast(rows, x: int) -> int:
-    """Identical result to apply_matrix_8, computed via the
-    popcount form of manuscript Section 3.1:
-        v(y)[i] = popcount(m_i AND x) mod 2   (MSB-first).
-    Used in branch-number evaluation and fast-path table
-    construction; bit-exact equivalence with the reference path
-    is exercised by verify_fast_equivalence() at startup."""
+    """Popcount-equivalent fast path for apply_matrix_8."""
     out = 0
     for row in rows:
         out = (out << 1) | ((row & x).bit_count() & 1)
     return out
 
 def branch_number_at_least(rows, threshold: int) -> bool:
-    """Early-exit predicate: True iff B(M) >= threshold. Makes
-    the SAME accept/reject decision as
-    branch_number_of_matrix(rows) >= threshold, but returns as
-    soon as a violating input x is found. Inputs with
-    wt(x) >= threshold are skipped (their sum meets the
-    threshold trivially)."""
+    """Early-exit predicate for B(M) >= threshold."""
     for x in range(1, 256):
         if x.bit_count() >= threshold:
             continue
@@ -170,13 +147,7 @@ def branch_number_at_least(rows, threshold: int) -> bool:
     return True
 
 def branch_number_of_matrix(rows) -> int:
-    """
-    Compute branch number B(M) = min_{x != 0} {wt(x) + wt(Mx)}.
-    B(M) is invariant under bit reordering of the input/output
-    convention — the MSB-first choice does not affect this value.
-    Cryptographically: B(M) >= 4 means any single active input
-    bit activates at least 3 output bit positions.
-    """
+    """Compute B(M) = min_{x != 0} wt(x) + wt(Mx)."""
     best = None
     for x in range(1, 256):
         y = apply_matrix_8_fast(rows, x)
@@ -188,65 +159,34 @@ def branch_number_of_matrix(rows) -> int:
 # ============================================================
 # Rotor rotation: 90-degree clockwise rotation of 8x8 matrix
 #
-# DEFINITION (manuscript Definition 2.2):
+# DEFINITION (manuscript Section 3.2):
 #   R(M)_ij = M_{7-j, i},   0 <= i,j <= 7
 #
-# This acts on abstract (i,j) grid indices under the MSB-first
-# convention. It does NOT reorder the bit encoding of stored
-# bytes — rows_to_grid / grid_to_rows handle the conversion.
-#
-# Order-4 property: R^4(M) = M for all M.
-# Applied 4 times returns the original matrix exactly.
-#
-# IMPORTANT: Invertibility of M does NOT guarantee invertibility
-# of R(M). Branch number B(M) >= 4 does NOT guarantee
-# B(R(M)) >= 4. Both properties are verified explicitly for
-# all 4 rotations in derive_invertible_seed_matrix_filtered.
+# Algebraically, R(M) = M^T J, where J is the antidiagonal
+# identity (coordinate-reversal) permutation matrix. Therefore
+# invertibility is preserved automatically by rotation. The four
+# orientations realize only the two independent local branch
+# numbers B(M) and B(M^T). The implementation nevertheless
+# rechecks all four orientations defensively as a consistency test.
 # ============================================================
 
 def rows_to_grid(rows):
-    """
-    Convert list of 8 row-bytes to 8x8 grid of bits.
-    grid[i][j] = M_ij = (rows[i] >> (7-j)) & 1  (MSB-first).
-    """
     return [byte_to_vec(r) for r in rows]
 
 def grid_to_rows(grid):
-    """
-    Convert 8x8 grid of bits back to list of 8 row-bytes.
-    Inverse of rows_to_grid under MSB-first convention.
-    """
     return [vec_to_byte(row) for row in grid]
 
 def rotate_matrix_entries_clockwise_90(rows):
-    """
-    Rotate 8x8 GF(2) matrix M clockwise by 90 degrees.
-
-    Formal definition (manuscript Definition 2.2):
-      R(M)_ij = M_{7-j, i},   n=8, 0 <= i,j <= 7
-
-    Equivalently: column i of M becomes row i of R(M),
-    read in reversed order (bottom to top).
-
-    Acts on abstract (i,j) indices; uses rows_to_grid /
-    grid_to_rows for byte <-> grid conversion under the
-    consistent MSB-first convention.
-    """
+    """Rotate M clockwise: R(M)_ij = M_{7-j,i}."""
     g = rows_to_grid(rows)
     n = 8
     rotated = [[0] * n for _ in range(n)]
     for i in range(n):
         for j in range(n):
-            # R(M)_ij = M_{n-1-j, i}
             rotated[i][j] = g[n - 1 - j][i]
     return grid_to_rows(rotated)
 
 def rotate_matrix_entries_k(rows, k: int):
-    """
-    Apply k clockwise 90-degree rotations to matrix M.
-    rotate_matrix_entries_k(rows, 0) = rows (identity).
-    rotate_matrix_entries_k(rows, 4) = rows (order-4 property).
-    """
     out = rows[:]
     for _ in range(k % 4):
         out = rotate_matrix_entries_clockwise_90(out)
@@ -260,17 +200,11 @@ def derive_invertible_seed_matrix_filtered(master_key: bytes,
                                             byte_index: int,
                                             min_branch: int = 4):
     """
-    Derive admissible seed matrix for byte position byte_index.
+    Derive the admissible seed for one byte position.
 
-    Filters candidates until all 4 rotor orientations are both:
-      - invertible over GF(2)   (rank check)
-      - branch number >= min_branch  (diffusion strength check)
-
-    Invertibility of the seed alone does NOT guarantee
-    invertibility of all rotations — this is checked explicitly
-    (see Step 0 verify_all_rotations_invertible for confirmation).
-
-    Returns the seed matrix rows (list of 8 bytes, MSB-first).
+    Seed invertibility algebraically guarantees invertibility of
+    every orientation because R(M)=M^T J. The repeated rank checks
+    below are retained only as defensive representation checks.
     """
     counter = 0
     while True:
@@ -279,45 +213,25 @@ def derive_invertible_seed_matrix_filtered(master_key: bytes,
             byte_index.to_bytes(1, "big") +
             counter.to_bytes(4, "big")
         ).digest()
-
-        # Take first 8 bytes as the 8 row values of a candidate matrix
         rows = list(digest[:8])
-
-        # Filter 1: seed itself must be invertible over GF(2)
         if not is_invertible_8(rows):
             counter += 1
             continue
-
-        # Generate all 4 rotor orientations
         family = [rotate_matrix_entries_k(rows, k) for k in range(4)]
-
-        # Filter 2: ALL 4 orientations must be invertible over GF(2)
-        # (invertibility is NOT preserved by rotation in general)
         if not all(is_invertible_8(M) for M in family):
             counter += 1
             continue
-
-        # Filter 3: ALL 4 orientations must meet branch number floor
-        # (early-exit form; identical accept/reject decision)
         if all(branch_number_at_least(M, min_branch)
                for M in family):
-            # A8: record total candidates examined for this seed
             SEED_SEARCH_STATS[(master_key, byte_index)] = counter + 1
             return rows
-
         counter += 1
 
 
 seed_matrices_cache = {}
 
 def get_seed_matrices(master_key: bytes, min_branch: int = 4):
-    """
-    Return (and cache) the 16 admissible seed matrices derived
-    from master_key. Each call with the same key returns the
-    identical deterministic set — enabling Bob to reconstruct
-    all matrices from (password, salt) without any additional
-    communication.
-    """
+    """Return/cache the 16 deterministic admissible seed matrices."""
     cache_key = (master_key, min_branch)
     if cache_key not in seed_matrices_cache:
         seed_matrices_cache[cache_key] = [
@@ -327,28 +241,11 @@ def get_seed_matrices(master_key: bytes, min_branch: int = 4):
         ]
     return seed_matrices_cache[cache_key]
 
-# ============================================================
-# Build rotor matrices for one round
-#
-# Rotor schedule (manuscript Definition 2.4):
-#   M_{r,j} = R^{(r+j) mod 4}(S_j)
-#
-# where S_j is the admissible seed for byte position j,
-# r is the round index (0..15), j is the byte position (0..15).
-#
-# This produces 16 x 16 = 256 matrix applications total,
-# with 16 x 4 = 64 distinct (seed, orientation) pairs,
-# each appearing exactly 4 times across 16 rounds.
-# ============================================================
 
 def build_rotor_matrices_for_round(master_key: bytes,
                                     round_index: int,
                                     min_branch: int = 4):
-    """
-    Return list of 16 matrices for round round_index.
-    Matrix for byte position j: R^{(round_index+j) mod 4}(S_j).
-    All returned matrices are admissible (invertible, B >= 4).
-    """
+    """Return M_{r,j}=R^{(r+j) mod 4}(S_j) for j=0..15."""
     seeds = get_seed_matrices(master_key, min_branch=min_branch)
     matrices = []
     for j in range(16):
@@ -356,22 +253,8 @@ def build_rotor_matrices_for_round(master_key: bytes,
         matrices.append(rotate_matrix_entries_k(seeds[j], orientation))
     return matrices
 
-# ============================================================
-# Routing permutation
-#
-# mode = round_index mod 4; reorders 16 byte positions for
-# inter-byte diffusion by swapping index bits.
-#
-# mode 0: identity              [rounds 0, 4, 8, 12]
-# mode 1: swap index bits 0<->1 [rounds 1, 5, 9, 13]
-# mode 2: swap index bits 0<->2 [rounds 2, 6, 10, 14]
-# mode 3: swap index bits 0<->3 [rounds 3, 7, 11, 15]
-#
-# Period 4: routing_pi(r+4, j) == routing_pi(r, j).
-# ============================================================
 
 def permute_index_bits(j: int, a: int, b: int) -> int:
-    """Swap bits a and b of the 4-bit byte index j."""
     bits = [(j >> t) & 1 for t in range(4)]
     bits[a], bits[b] = bits[b], bits[a]
     out = 0
@@ -380,7 +263,6 @@ def permute_index_bits(j: int, a: int, b: int) -> int:
     return out
 
 def routing_pi(round_index: int, j: int) -> int:
-    """Return destination index for byte position j in round round_index."""
     mode = round_index % 4
     if mode == 0:
         return j
@@ -391,73 +273,37 @@ def routing_pi(round_index: int, j: int) -> int:
     else:
         return permute_index_bits(j, 0, 3)
 
-# ============================================================
-# Round function and encryption
-#
-# Each round r applies five operations in sequence:
-#
-#   Step 1: state = rotl128(state, K_VALUES[r mod 12])
-#             — 128-bit left rotation; inter-byte bit diffusion
-#
-#   Step 2: state = state XOR round_key[r]
-#             — round key injection (SHA256-derived, 128-bit)
-#
-#   Step 3: state[j] = M_{r,j} * state[j]  for j = 0..15
-#             — 16 independent 8x8 GF(2) matrix multiplications
-#             — intra-byte diffusion; branch number >= 4 per byte
-#             — rotor-scheduled: M_{r,j} = R^{(r+j) mod 4}(S_j)
-#
-#   Step 4: state[j] = AES_SBOX[state[j]]  for j = 0..15
-#             — nonlinear substitution (nonlinearity=112, deg=7)
-#
-#   Step 5: state = routing_permutation(state, mode = r mod 4)
-#             — inter-byte positional reordering
-#
-# Full encryption: 16 iterations of round_function.
-# ============================================================
 
 def round_function(block: bytes, master_key: bytes,
                     round_index: int) -> bytes:
-    # Step 1: Rotate left 128 (inter-byte bit diffusion)
     state = rotl128(block, K_VALUES[round_index % len(K_VALUES)])
-
-    # Step 2: XOR round key
     rk = derive_round_key(master_key, round_index)
     state = xor_bytes(state, rk)
-
-    # Step 3: GF(2) matrix multiply — one admissible rotor matrix
-    # per byte, scheduled by (round_index + j) mod 4.
-    # All operations under MSB-first convention (see header).
     state_bytes = list(state)
     matrices = build_rotor_matrices_for_round(
         master_key, round_index, min_branch=MIN_BRANCH_NUMBER)
     mixed = [apply_matrix_8(matrices[j], state_bytes[j])
              for j in range(16)]
-
-    # Step 4: AES S-box substitution (nonlinear layer)
     subbed = [AES_SBOX[x] for x in mixed]
-
-    # Step 5: Routing permutation (inter-byte diffusion)
     routed = [0] * 16
     for j in range(16):
         routed[routing_pi(round_index, j)] = subbed[j]
-
     return bytes(routed)
 
 def encrypt_block(block: bytes, master_key: bytes,
                    rounds: int = ROUNDS) -> bytes:
-    """Encrypt one 128-bit block under master_key for given number of rounds."""
     state = block
     for r in range(rounds):
         state = round_function(state, master_key, r)
     return state
 
 
-
 def derive_master_key_stub(password: str, salt: bytes) -> bytes:
-    """SHA-256 stub key derivation (reproducibility; test vectors).
-    Production mode replaces this with Argon2id (t=3, m=65536 KiB,
-    p=2); all cipher operations are identical."""
+    """SHA-256 stub for reproducible test vectors only.
+
+    HESPN itself accepts a 256-bit master key. Any application-level
+    password KDF is external to the construction studied here.
+    """
     return hashlib.sha256(password.encode("utf-8") + salt).digest()
 
 def rotr128(block: bytes, k: int) -> bytes:

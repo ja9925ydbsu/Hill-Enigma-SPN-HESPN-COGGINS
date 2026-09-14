@@ -4,7 +4,9 @@ The current manuscript is **Order-Eight Rotor-Scheduled Hill Matrices: Construct
 
 HESPN is used as an experimental SPN harness for one construction question: can a family of rotated Hill-derived 8 x 8 matrices over GF(2) occupy the linear-layer position of a byte-oriented SPN while remaining explicit, reversible, locally diffusion-bounded, deterministically schedulable, and reproducible?
 
-The answer established by the IJIS manuscript is limited but affirmative. The defined matrix rotation satisfies `R(M) = M^T J` and therefore preserves invertibility; accepted seeds satisfy the local `B >= 4` floor for every scheduled orientation; the public schedule gives deterministic uniform coverage of each labeled seed-orientation pair; and the complete sixteen-round map is invertible. Reference vectors and setup statistics make the prototype independently checkable.
+Revision 5 makes explicit that the contribution is the coherent framework formed by five elements: order-eight matrix-element rotation; the orientation identity `R(M) = M^T J`; reduction of four apparent orientation branch checks to `B(M)` and `B(M^T)`; deterministic admissible-family construction; and balanced scheduling with reversible SPN integration.
+
+The schedule balance is now formalized: each labeled pair `(S_j, R^k)` occurs exactly four times across the 16 rounds. Rotation orbits can in principle have size 1, 2, or 4; all 16 accepted reference seeds have orbit size four, giving 64 distinct oriented matrices.
 
 The `B >= 4` threshold is a concrete feasible construction criterion that guarantees at least three active output bits for every one-bit input; it is not claimed optimal. Rejection sampling is master-key setup work rather than a per-block encryption cost in the reference construction.
 

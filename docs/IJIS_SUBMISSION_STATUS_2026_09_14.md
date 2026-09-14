@@ -6,11 +6,11 @@
 
 Target: Springer Nature, **International Journal of Information Security**.
 
-Revision 5 is a focused framing and mathematical-clarification pass over Revision 4. It does not change the HESPN construction, numerical results, test vectors, figures, or bibliography.
+Revision 6 is a focused positioning pass over Revision 5. It does not change the HESPN construction, numerical results, test vectors, figures, or bibliography.
 
 ## Coherent construction framework
 
-The manuscript now states explicitly that its contribution is the integrated framework formed by:
+The manuscript states explicitly that its contribution is the integrated framework formed by:
 
 1. order-eight matrix-element rotation at byte granularity;
 2. the orientation identity `R(M) = M^T J`;
@@ -20,17 +20,24 @@ The manuscript now states explicitly that its contribution is the integrated fra
 
 The contribution is therefore not presented as any one isolated mechanism. The pieces are mutually supporting: the order-eight formulation creates byte-scale applicability, the orientation algebra supplies the invariants needed for safe scheduling, the branch identities make admissibility tractable, the deterministic filter constructs reproducible families, and the SPN harness demonstrates that the resulting family can be scheduled and inverted consistently in an iterated architecture.
 
-## New Revision 5 clarifications
+## Revision 6 positioning table
 
-- **Schedule balance is formalized.** For every byte position `j` and orientation index `k`, the labeled pair `(S_j, R^k)` occurs in exactly four of the sixteen rounds. Hence all 64 labeled seed-orientation pairs occur exactly four times across the 256 byte-matrix applications.
-- **Rotation-orbit degeneracy is clarified.** Because `R^4` is the identity, orbit sizes can be 1, 2, or 4. Shorter orbits occur when a matrix is invariant under `R` or `R^2`. None occur in the reference family: all 16 accepted seeds have orbit size four.
-- **Admissible-family construction is elevated in the novelty framing.** Deterministic rejection sampling converts the algebraic constraints into a reproducible family-selection procedure whose setup cost is measured by the reported audit.
+A compact comparison table has been added near the end of the Introduction. It compares only the three directly cited antecedent constructions already used in the manuscript's research-lineage discussion with the present work. The rows cover matrix-element rotation, order-eight rotation, the orientation identity, the admissible-family criterion, SPN realization, the rotor-scheduled SPN layer, and the formal schedule-balance result.
+
+The caption expressly states that the table is a positioning summary of those directly cited antecedents and is **not a claim of priority over the broader literature**.
 
 ## Technical claim boundary
 
 The local `B >= 4` threshold guarantees at least three active output bits for every one-bit input and is feasible under the reported rejection audit. It is not claimed optimal. The guarantee is local to one byte over GF(2), not a cross-byte MDS guarantee, a wide-trail bound, a multi-round active-S-box lower bound, a maximum differential probability bound, or a maximum linear correlation bound.
 
 The 5,000-pair plaintext-avalanche experiment remains a bounded implementation sanity check. It is not evidence of differential or linear resistance and does not establish a schedule advantage.
+
+## Retained construction properties
+
+- Exact schedule balance: for every byte position `j` and orientation index `k`, `(S_j, R^k)` occurs in exactly four rounds.
+- Rotation orbit sizes can be 1, 2, or 4 because `R^4` is the identity; all 16 reference seeds have orbit size four.
+- Deterministic rejection sampling converts the algebraic conditions into a reproducible admissible-family construction.
+- Every round and the complete 16-round map are reversible.
 
 ## Retained bounded verification
 

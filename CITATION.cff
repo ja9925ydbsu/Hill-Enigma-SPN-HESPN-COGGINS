@@ -1,17 +1,17 @@
 cff-version: 1.2.0
 message: "If you use this software or the submission-aligned materials, please cite the repository and the associated manuscript when available."
-title: "Rotor-Scheduled Hill Matrices as a Linear Layer in an Experimental Substitution-Permutation Network"
+title: "Order-Eight Rotor-Scheduled Hill Matrices: Construction and Validation of a Byte-Local SPN Linear Layer"
 type: software
 authors:
   - family-names: "Coggins"
     given-names: "Porter E."
     name-suffix: "III"
     affiliation: "Bemidji State University"
-version: "IJIS Revision 3"
-date-released: "2026-09-13"
+version: "IJIS Revision 4"
+date-released: "2026-09-14"
 repository-code: "https://github.com/ja9925ydbsu/Hill-Enigma-SPN-HESPN-COGGINS"
 license: MIT
-abstract: "Research software and reproducibility materials for a construction-feasibility study of rotor-scheduled Hill-derived 8 x 8 binary matrices as a reversible, locally diffusion-bounded linear layer in an experimental substitution-permutation network. HESPN is a research harness, not a deployment-ready cipher or a claimed replacement for a standardized primitive."
+abstract: "Research software and reproducibility materials for a construction-feasibility study of order-eight rotor-scheduled Hill-derived 8 x 8 binary matrices as a reversible, locally diffusion-bounded byte-local linear layer in an experimental substitution-permutation network. HESPN is a research harness, not a deployment-ready cipher or a claimed replacement for a standardized primitive."
 keywords:
   - cryptography
   - Hill cipher

@@ -1,6 +1,6 @@
 # Historical Communications in Cryptology support snapshot
 
-> **Status:** This directory is retained for provenance from the earlier Communications in Cryptology preparation. It is not the current journal-submission directory. Current IJIS-facing status and scope are documented in `../ijis_submission/README.md`, `../docs/IJIS_SUBMISSION_STATUS_2026_09_13.md`, and `../docs/REPRODUCIBILITY_IJIS_2026_09_13.md`.
+> **Status:** This directory is retained for provenance from the earlier Communications in Cryptology preparation. It is not the current journal-submission directory. Current IJIS-facing status and scope are documented in `../ijis_submission/README.md`, `../docs/IJIS_SUBMISSION_STATUS_2026_09_14.md`, and `../docs/REPRODUCIBILITY_IJIS_2026_09_14.md`.
 
 This directory contains public repository materials originally aligned with the construction study **Hill-Enigma-SPN: Rotor-Scheduled Hill Matrices as a Mix Layer in an Experimental SPN** during the CiC formatting stage.
 

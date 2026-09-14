@@ -1,6 +1,6 @@
 # Legacy and out-of-scope analyses
 
-This repository predates the current IJIS construction-feasibility framing and therefore contains experiments that address broader cryptanalytic questions than the manuscript **Rotor-Scheduled Hill Matrices as a Linear Layer in an Experimental Substitution-Permutation Network**.
+This repository predates the current IJIS construction-feasibility framing and therefore contains experiments that address broader cryptanalytic questions than the manuscript **Order-Eight Rotor-Scheduled Hill Matrices: Construction and Validation of a Byte-Local SPN Linear Layer**.
 
 ## Why the files are retained
 
@@ -33,7 +33,7 @@ Neither statement is a proof of resistance to reflection, slide, or related-key 
 
 ## Relationship to the current manuscript
 
-The current evidentiary chain is listed in `REPRODUCIBILITY_IJIS_2026_09_13.md`. Historical analyses may be useful in separate research tracks, but they should not be cited as if the IJIS construction manuscript established their conclusions.
+The current evidentiary chain is listed in `REPRODUCIBILITY_IJIS_2026_09_14.md`. Historical analyses may be useful in separate research tracks, but they should not be cited as if the IJIS construction manuscript established their conclusions.
 
 ## Repository cleanup principle
 

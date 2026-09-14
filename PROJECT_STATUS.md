@@ -1,4 +1,4 @@
-# Project status: IJIS Revision 4
+# Project status: IJIS Revision 5
 
 Updated: 2026-09-14
 
@@ -6,18 +6,19 @@ The current manuscript is being finalized for author review/pre-submission to Sp
 
 ## Current research claim
 
-The paper asks whether matrix-element rotations previously reported for order-two Hill-derived constructions can be extended to order eight and used as a reversible, locally diffusion-bounded linear layer in a byte-oriented SPN. The contribution is an algebraic and architectural extension: the order-eight formulation, its rotation identity and branch-number consequences, deterministic admissible-matrix setup, reproducible public scheduling, exact invertibility, and integration into a complete experimental SPN harness.
+The paper asks whether matrix-element rotations previously reported for order-two Hill-derived constructions can be extended to order eight and used as a reversible, locally diffusion-bounded linear layer in a byte-oriented SPN. Revision 5 frames the contribution explicitly as a coherent construction framework comprising the order-eight rotation, orientation algebra `R(M) = M^T J`, two-value branch-number reduction, deterministic admissible-family construction, balanced public scheduling, and reversible SPN integration.
 
 ## Verified construction properties
 
 - Sixteen accepted 8 x 8 binary seed matrices are used in the reference configuration.
-- For the defined clockwise rotation, `R(M) = M^T J`; every scheduled orientation is invertible when the seed is invertible.
 - The four orientations require only two independent branch-number evaluations, `B(M)` and `B(M^T)`.
-- Every scheduled orientation satisfies the local floor `B >= 4`. The threshold guarantees at least three active output bits for every one-bit input and is not claimed optimal.
-- The sixteen-round public schedule uses all 64 labeled seed-orientation pairs equally; it is selected for deterministic uniform coverage and reproducibility.
-- The complete round function has an exact inverse.
+- Every scheduled orientation is invertible and satisfies the local floor `B >= 4`.
+- The public schedule has an explicit balance proposition: each labeled pair `(S_j, R^k)` occurs exactly four times in sixteen rounds.
+- The deterministic rejection filter constructs reproducible admissible families and is feasible for the reported prototype setup.
+- Every round and the complete sixteen-round mapping are reversible.
 - Reference vectors check bit packing, round order, matrix application, substitution, routing, and decryption.
-- The deterministic rejection filter is feasible for the reported prototype setup and represents master-key setup work rather than per-block encryption work.
+
+Because the rotation has order four, matrix orbits can in principle have size 1, 2, or 4. The 16 accepted seeds in the reference family all have orbit size four, giving 64 distinct oriented matrices.
 
 ## Retained bounded empirical checks
 
@@ -32,9 +33,9 @@ The avalanche statistic is used only as a bounded implementation sanity check fo
 - No nontrivial multi-round active-S-box lower bound is established.
 - No matched static-versus-rotor schedule comparison is part of this construction-feasibility paper.
 
-## Revision 4
+## Revision 5
 
-Revision 4 strengthens presentation rather than the scientific claim. It adopts the new title, makes the novelty statement explicit, defines `Hill-derived`, explains the `B >= 4` threshold and schedule choice, clarifies setup amortization, tightens avalanche interpretation, strengthens closure against the Section 1 construction criteria, and removes some repeated disclaimer language. Scientific results, numerical values, test vectors, figures, and bibliography are unchanged.
+Revision 5 is a focused framing and mathematical-clarification pass over Revision 4. It formalizes schedule balance as a proposition, clarifies that shorter rotational orbits are possible in principle but absent from the reference family, and emphasizes deterministic admissible-family construction as one of the central elements of the contribution. Scientific results, numerical values, test vectors, figures, and bibliography remain unchanged.
 
 ## Public repository versus journal submission package
 

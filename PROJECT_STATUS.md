@@ -1,4 +1,4 @@
-# Project status: IJIS Revision 5
+# Project status: IJIS Revision 6
 
 Updated: 2026-09-14
 
@@ -6,7 +6,9 @@ The current manuscript is being finalized for author review/pre-submission to Sp
 
 ## Current research claim
 
-The paper asks whether matrix-element rotations previously reported for order-two Hill-derived constructions can be extended to order eight and used as a reversible, locally diffusion-bounded linear layer in a byte-oriented SPN. Revision 5 frames the contribution explicitly as a coherent construction framework comprising the order-eight rotation, orientation algebra `R(M) = M^T J`, two-value branch-number reduction, deterministic admissible-family construction, balanced public scheduling, and reversible SPN integration.
+The paper asks whether matrix-element rotations previously reported for order-two Hill-derived constructions can be extended to order eight and used as a reversible, locally diffusion-bounded linear layer in a byte-oriented SPN. The contribution is framed as a coherent construction framework comprising the order-eight rotation, orientation algebra `R(M) = M^T J`, two-value branch-number reduction, deterministic admissible-family construction, balanced public scheduling, and reversible SPN integration.
+
+Revision 6 adds one compact lineage-comparison table near the end of the Introduction. The table compares only the three directly cited antecedent constructions already used in the manuscript's novelty discussion and explicitly states that it is not a claim of priority over the broader literature.
 
 ## Verified construction properties
 
@@ -33,9 +35,9 @@ The avalanche statistic is used only as a bounded implementation sanity check fo
 - No nontrivial multi-round active-S-box lower bound is established.
 - No matched static-versus-rotor schedule comparison is part of this construction-feasibility paper.
 
-## Revision 5
+## Revision 6
 
-Revision 5 is a focused framing and mathematical-clarification pass over Revision 4. It formalizes schedule balance as a proposition, clarifies that shorter rotational orbits are possible in principle but absent from the reference family, and emphasizes deterministic admissible-family construction as one of the central elements of the contribution. Scientific results, numerical values, test vectors, figures, and bibliography remain unchanged.
+Revision 6 is a positioning pass over Revision 5. It adds only the compact direct-lineage comparison table and does not change the construction, scientific results, numerical values, test vectors, figures, or bibliography. The current Springer author-side build is 13 pages because the added table is allowed to remain readable rather than compressing existing material to preserve the earlier page count.
 
 ## Public repository versus journal submission package
 

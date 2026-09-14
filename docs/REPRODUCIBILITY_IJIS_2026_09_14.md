@@ -16,7 +16,7 @@ The script prints the 16 round keys, the 16 accepted seed matrices with branch-n
 
 ## Algebraic, admissibility, and schedule properties
 
-Revision 5 presents the construction as a coherent framework and establishes:
+Revision 6 retains the coherent construction framework and the following properties:
 
 - `R(M) = M^T J` for the defined clockwise matrix-element rotation;
 - rotation preserves invertibility;
@@ -30,6 +30,10 @@ Revision 5 presents the construction as a coherent framework and establishes:
 Because `R^4` is the identity, rotation orbits can have size 1, 2, or 4. Shorter orbits are possible when a matrix is invariant under `R` or `R^2`. The reference family contains no such degeneracy: all 16 accepted seeds have orbit size four, giving 64 distinct oriented matrices.
 
 Seed derivation is performed once per master key in the reference construction. The accepted seed family and scheduled orientations can be reused across subsequent block evaluations; rejection sampling is therefore setup work rather than a per-block encryption cost. No optimized setup-time or throughput claim is made.
+
+## Revision 6 positioning aid
+
+The manuscript now includes one compact comparison table limited to the directly cited antecedent constructions already used in the Introduction. That table is a reviewer-orientation aid: it summarizes the research lineage of the integrated framework and explicitly disclaims any broader priority claim. It does not add a new construction property or empirical result to the reproducibility chain.
 
 ## Exact local diffusion profile
 

@@ -7,8 +7,8 @@ authors:
     given-names: "Porter E."
     name-suffix: "III"
     affiliation: "Bemidji State University"
-version: "IJIS Revision 6"
-date-released: "2026-09-14"
+version: "Cryptologia submission 2026-09-15"
+date-released: "2026-09-15"
 repository-code: "https://github.com/ja9925ydbsu/Hill-Enigma-SPN-HESPN-COGGINS"
 license: MIT
 abstract: "Research software and reproducibility materials for a coherent construction framework built from order-eight rotor-scheduled Hill-derived 8 x 8 binary matrices, orientation algebra, deterministic admissible-family selection, balanced public scheduling, and reversible integration as a byte-local linear layer in an experimental substitution-permutation network. HESPN is a research harness, not a deployment-ready cipher or a claimed replacement for a standardized primitive."

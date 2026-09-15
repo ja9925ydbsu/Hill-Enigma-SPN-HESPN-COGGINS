@@ -12,23 +12,25 @@ This repository supports the construction and validation study **Order-Eight Rot
 
 The Enigma analogy is deliberately narrow. HESPN has no historical Enigma reflector, no Enigma rotor wiring, and no self-inverse signal path.
 
-## Research question
+## Research question and significance
 
-The construction paper asks a deliberately limited question: can previously reported matrix-element rotations be extended to an order-eight binary family, filtered for explicit local properties, scheduled reproducibly, inverted, and used as the linear mix layer of a complete experimental SPN?
+The present work establishes a construction and validation framework around a deliberately limited question: can previously reported matrix-element rotations be extended to an order-eight binary family, filtered for explicit local properties, scheduled reproducibly, inverted, and used as the linear mix layer of a complete experimental SPN?
 
-HESPN is a research harness for that construction question. It is not presented as a deployment-ready cipher, a replacement for AES or another standardized primitive, or evidence that a public orientation schedule is more secure than a static matrix layer.
+The significance of the present work is not that an order-eight rotor schedule is shown to improve security. Rather, the significance is that a previously published order-two mechanism is shown to admit a mathematically consistent byte-scale realization together with explicit admissibility conditions, reproducible scheduling, and reversible SPN integration. These properties establish a common framework against which future comparative and cryptanalytic studies may be posed.
+
+HESPN is a research harness for that construction and validation question. It is not presented as a deployment-ready cipher, a replacement for AES or another standardized primitive, or evidence that a public orientation schedule is more secure than a static matrix layer.
 
 ## Separate orientation-scheduling study
 
-The comparative question has not been left unexamined. The limits of public orientation scheduling in the byte-local setting are investigated separately in **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, a manuscript currently under review.
+The comparative question has not been left unexamined. The limits of public orientation scheduling in the byte-local setting have been investigated separately in **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**.
 
 That study contains matched static-versus-scheduled controls, exact low-support transfer analysis, support-growth analysis, and the cross-byte boundary experiments. Its current code and results belong in the dedicated repository:
 
 <https://github.com/ja9925ydbsu/structural-limits-orientation-scheduling>
 
-Those analyses are not part of the evidentiary chain for the HESPN construction manuscript.
+Those analyses are not part of the evidentiary chain for the HESPN construction and validation framework.
 
-## Construction-level claims supported here
+## Construction and validation claims supported here
 
 The current HESPN manuscript and repository support the following limited claims:
 
@@ -40,7 +42,7 @@ The current HESPN manuscript and repository support the following limited claims
 6. Every round and the complete sixteen-round mapping are reversible.
 7. Rejection sampling is feasible for the reported reference setup.
 8. Reference vectors permit independent implementation checking.
-9. Exact one-bit local spreading and a bounded plaintext-avalanche integration check provide implementation-level verification, not full-cipher security proofs.
+9. Exact one-bit local spreading and a bounded plaintext-avalanche integration check provide implementation-level validation, not full-cipher security proofs.
 
 For the reference configuration, all 64 oriented matrices have branch number 4. Across 512 exact one-bit matrix applications, output weight ranges from 3 to 8 bits with mean 4.5390625. In the bounded plaintext-avalanche check, the mean ciphertext Hamming distance at sixteen rounds is 63.9664 bits with 95 percent confidence interval [63.81093, 64.12187].
 
@@ -48,7 +50,7 @@ For the reference configuration, all 64 oriented matrices have branch number 4. 
 
 - `hespn_reference.py` is the current executable reference implementation and test-vector generator.
 - `hespn_test_vector_v4.py` is a compatibility entry point that re-exports the current reference implementation.
-- `cryptologia_support/` contains construction-verification data and submission-aligned reproducibility notes.
+- `cryptologia_support/` contains construction-and-validation data and submission-aligned reproducibility notes.
 - `legacy_hespn_v4/` preserves older HESPN-v4 diagnostic material for research provenance. These files are historical and are not current Cryptologia evidence.
 - `docs/LEGACY_AND_OUT_OF_SCOPE_ANALYSES.md` explains the scope boundary and the September 2026 repository cleanup.
 

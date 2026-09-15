@@ -1,12 +1,12 @@
-# HESPN IJIS construction-study summary
+# HESPN Cryptologia construction-study summary
 
-The current manuscript is **Order-Eight Rotor-Scheduled Hill Matrices: Construction and Validation of a Byte-Local SPN Linear Layer**.
+The current manuscript is **Order-Eight Rotor-Scheduled Hill Matrices: Construction and Validation of a Byte-Local SPN Linear Layer** and is being prepared for submission to Taylor & Francis **Cryptologia**.
 
 HESPN is used as an experimental SPN harness for one construction question: can a family of rotated Hill-derived 8 x 8 matrices over GF(2) occupy the linear-layer position of a byte-oriented SPN while remaining explicit, reversible, locally diffusion-bounded, deterministically schedulable, and reproducible?
 
 The manuscript presents the contribution as the coherent framework formed by five elements: order-eight matrix-element rotation; the orientation identity `R(M) = M^T J`; reduction of four apparent orientation branch checks to `B(M)` and `B(M^T)`; deterministic admissible-family construction; and balanced scheduling with reversible SPN integration.
 
-Revision 6 adds a compact comparison table that positions this framework only against the three directly cited antecedent constructions used in the Introduction. The table is a lineage summary, not a broader priority claim.
+A compact comparison table positions this framework only against the three directly cited antecedent constructions used in the Introduction. The table is a lineage summary, not a broader priority claim.
 
 The schedule balance is formalized: each labeled pair `(S_j, R^k)` occurs exactly four times across the 16 rounds. Rotation orbits can in principle have size 1, 2, or 4; all 16 accepted reference seeds have orbit size four, giving 64 distinct oriented matrices.
 
@@ -14,6 +14,8 @@ The `B >= 4` threshold is a concrete feasible construction criterion that guaran
 
 The manuscript also reports an exact local one-bit diffusion profile and one plaintext-avalanche integration check. Those measurements are implementation checks on the completed harness, not security proofs and not evidence that scheduling is superior to a static matrix layer.
 
-The paper deliberately keeps multi-round wide-trail bounds, exact weight-one recurrence, differential and linear trail optimization, matched schedule ablations, boomerang analysis, related-key analysis, and broader cross-byte cryptanalysis outside its evidentiary scope. Historical files for several of those experiments remain in this repository solely for provenance and separate research use.
+The paper deliberately keeps multi-round wide-trail bounds, exact weight-one recurrence, differential and linear trail optimization, matched schedule ablations, boomerang analysis, related-key analysis, and broader cross-byte cryptanalysis outside its evidentiary scope.
 
-Current IJIS-facing status and reproducibility documentation are in `docs/IJIS_SUBMISSION_STATUS_2026_09_14.md` and `docs/REPRODUCIBILITY_IJIS_2026_09_14.md`. The complete journal submission package is maintained separately as an author-side artifact.
+In particular, `active_sbox_bounds.csv` and its 5/25/30/50 active-S-box values belong to the separate 4 x 4 GF(2^8) MDS-rotor study produced by `run_mds_rotor_study.py`. They are not part of the HESPN/Cryptologia evidence chain.
+
+Current Cryptologia-facing status and reproducibility documentation are in `docs/CRYPTOLOGIA_SUBMISSION_STATUS_2026_09_15.md` and `docs/REPRODUCIBILITY_CRYPTOLOGIA_2026_09_15.md`. The complete journal submission package is maintained separately as an author-side artifact.

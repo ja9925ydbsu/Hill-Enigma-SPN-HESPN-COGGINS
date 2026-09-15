@@ -1,36 +1,39 @@
-# Legacy and out-of-scope analyses
+# Scope boundary and historical analyses
 
-This repository predates the current Communications in Cryptology framing and therefore contains experiments that address broader cryptanalytic questions than the current construction paper.
+This repository originally accumulated both HESPN construction work and broader experiments asking whether public orientation scheduling changes cryptanalytic behavior. Those are now treated as two distinct research questions.
 
-## Why the files are retained
+## Current HESPN scope
 
-They are retained to preserve research provenance and reproducibility. Deleting them would make earlier manuscript versions and exploratory analyses harder to reconstruct. Their presence should not be interpreted as making them part of the current CiC claim.
+The *Cryptologia* construction manuscript **Order-Eight Rotor-Scheduled Hill Matrices: Construction and Validation of a Byte-Local SPN Linear Layer** addresses construction, algebra, admissibility, scheduling, reversibility, setup behavior, reference vectors, exact local profiling, and a bounded integration check.
 
-## Outside the current CiC evidentiary chain
+It does not claim that rotor scheduling is superior to a static orientation, and it does not establish a deployment security level.
 
-The current construction paper does not rely on the following categories as support for its principal conclusion:
+## Separate Structural Limits study
 
-- exact weight-one recurrence, transfer matrices, best paths, or random-permutation comparisons;
-- static, rotor, round-only, position-only, or optimized schedule rankings;
-- matched avalanche comparisons across schedule arms;
-- differential-collision and random-mask linear screens;
-- boomerang or returned-difference experiments;
-- NIST SP 800-22 output tests;
-- restricted-variable algebraic-degree estimates;
-- cross-byte Cauchy-MDS boundary experiments and coefficient-sensitive trail searches;
-- slide and reflection audits as claims of attack resistance.
+The comparative scheduling question is addressed separately in **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, currently under review. Its working repository is:
 
-Those analyses ask what security contribution a scheduling mechanism might provide after the layer has been constructed. The CiC paper stops at the earlier construction question.
+<https://github.com/ja9925ydbsu/structural-limits-orientation-scheduling>
 
-## Structural notes that remain relevant
+That repository is the current home for:
 
-Two limited observations are retained in the current framing because they prevent terminology from being misunderstood:
+- exact weight-one recurrence and transfer analysis;
+- static, rotor, round-only, and position-only schedule comparisons;
+- matched avalanche and other schedule-control experiments;
+- calibration panels and fixed-key checks;
+- cross-byte Cauchy-MDS boundary experiments and trail searches;
+- schedule optimization and related structural audit outputs.
 
-1. HESPN has no Enigma-style reflector and its round operation order is not self-inverse.
-2. A period-four public orientation schedule is not the same thing as repeating an identical keyed round, because the reference configuration uses distinct round keys.
+Duplicate copies of those files were removed from the HESPN working tree on 2026-09-15. They remain available in the dedicated repository and are also recoverable from earlier HESPN Git commits.
 
-Neither statement is a proof of resistance to a reflection, slide, or related-key attack.
+## Historical HESPN-v4 diagnostics
 
-## Future cleanup
+Older HESPN-v4 differential, linear, NIST, and confirmation scripts/logs are preserved under `legacy_hespn_v4/` for provenance. Their presence does not make those diagnostics part of the present Cryptologia manuscript's claim set.
 
-A later non-scientific repository cleanup may move older root-level experiments into archival directories. Any such move should preserve file contents and provenance so earlier results remain reproducible.
+## Two structural observations retained
+
+Two limited observations remain useful because they prevent terminology from being misunderstood:
+
+1. HESPN has no Enigma-style reflector, no Enigma rotor wiring, and no self-inverse signal path.
+2. A period-four public orientation schedule is not the same as repeating an identical keyed round, because the reference configuration derives distinct round keys by round index.
+
+Neither statement is a proof of resistance to reflection, slide, or related-key attacks.

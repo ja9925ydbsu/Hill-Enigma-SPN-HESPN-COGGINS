@@ -1,34 +1,38 @@
 # Source and reuse notes
 
-This repository contains several generations of HESPN research code. The current Communications in Cryptology manuscript uses the original byte-local 8 x 8 GF(2) rotor-matrix construction as an experimental SPN mix-layer harness. Later cross-byte MDS, matched-schedule, trail-search, boomerang, randomness, and structural-audit materials remain in the repository as historical research assets but are not part of the current CiC construction claim.
+This repository contains the current HESPN construction reference plus historical HESPN development material. The current *Cryptologia* manuscript uses the byte-local 8 x 8 GF(2) rotor-matrix construction as an experimental SPN mix-layer harness.
 
-## Current CiC evidence chain
+## Current HESPN construction evidence
 
 The public repository should be read as supporting the following construction-level items:
 
 - MSB-first byte and matrix representation;
 - 90-degree matrix-element rotations;
-- invertibility checks;
+- the identity `R(M) = M^T J` and consequent preservation of invertibility;
 - local differential and linear branch-number checks;
-- sixteen-round rotor scheduling;
+- sixteen-round public rotor scheduling;
 - reversible round-function implementation;
-- deterministic reference behavior;
+- deterministic reference behavior and test vectors;
 - admissibility-filter setup behavior;
 - exact local one-bit diffusion profile;
 - bounded plaintext-avalanche integration check.
 
-The two CiC-specific machine-readable datasets are under `cic_submission/metrics/`.
-
-## Historical analyses retained for reproducibility
-
-Older files include broader security diagnostics and later experimental branches. Examples include exact weight-one trails, schedule ablations, random-mask linear screens, sampled differential screens, boomerang calibration, NIST testing, algebraic-degree estimates, cross-byte Cauchy-MDS experiments, and slide/reflection audits.
-
-Those files are intentionally preserved because deleting or silently rewriting them would impair reproducibility of earlier drafts and exploratory studies. They should not be cited as evidence that the current CiC manuscript proves resistance to the corresponding attacks.
+Current machine-readable construction-verification data are under `cryptologia_support/metrics/`.
 
 ## Relationship to the separate orientation-scheduling study
 
-The current CiC manuscript asks whether the rotating Hill-matrix family can be constructed and used as an SPN mix layer. A distinct orientation-scheduling study asks what cryptanalytic effect, if any, public scheduling has relative to matched static controls. Exact weight-one recurrence, support-growth analysis, and matched schedule comparisons belong to that separate question rather than to the CiC construction paper.
+The HESPN construction manuscript asks whether the rotating Hill-matrix family can be defined and used as a reversible SPN mix layer. A distinct manuscript, **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, asks what cryptanalytic effect, if any, public scheduling has relative to matched static controls. That manuscript is currently under review.
+
+Its exact weight-one recurrence calculations, matched schedule comparisons, support-growth analysis, cross-byte MDS boundary work, calibration panels, and related outputs belong in the dedicated repository:
+
+<https://github.com/ja9925ydbsu/structural-limits-orientation-scheduling>
+
+The September 2026 HESPN cleanup removes duplicate copies of that separate-study material from the current HESPN working tree. The earlier copies remain recoverable from Git history.
+
+## Historical HESPN material
+
+Older HESPN-v4 diagnostic scripts and July 2026 logs are preserved under `legacy_hespn_v4/`. They document development history but are not part of the present Cryptologia evidence chain and should not be interpreted as current security claims.
 
 ## Reuse principle
 
-When reusing code from this repository, distinguish the construction being implemented from the experiment being run. A script may be historically useful even when its output is outside the scope of the current paper. Preserve file provenance and avoid treating exploratory diagnostics as formal security guarantees.
+When reusing code from this repository, distinguish the construction being implemented from the experiment being run. The current reference implementation is `hespn_reference.py`. Historical scripts may still be useful for provenance, but their outputs should not be promoted into claims that the current construction manuscript does not make.

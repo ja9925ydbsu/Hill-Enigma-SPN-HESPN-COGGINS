@@ -1,17 +1,17 @@
 cff-version: 1.2.0
-message: "If you use this software or the submission-aligned materials, please cite the repository and the associated manuscript when available."
-title: "Hill-Enigma-SPN (HESPN): Rotor-Scheduled Hill Matrices as an SPN Mix Layer"
+message: "If you use this software or the construction-verification materials, please cite this repository and the associated manuscript when appropriate."
+title: "Hill Enigma Substitution-Permutation Network (HESPN): Reference Implementation and Validation Materials"
 type: software
 authors:
   - family-names: "Coggins"
     given-names: "Porter E."
     name-suffix: "III"
     affiliation: "Bemidji State University"
-version: "CiC Revision 2"
-date-released: "2026-08-28"
+version: "Cryptologia submission Revision 2"
+date-released: "2026-09-15"
 repository-code: "https://github.com/ja9925ydbsu/Hill-Enigma-SPN-HESPN-COGGINS"
 license: MIT
-abstract: "Research software and submission-aligned materials for evaluating whether rotor-scheduled Hill-derived 8 x 8 binary matrices can be specified and used as a reversible, locally diffusion-bounded mix layer in an experimental substitution-permutation network. HESPN is a research harness, not a deployment-ready cipher or a claimed replacement for a standardized primitive."
+abstract: "Reference software and construction-verification materials for HESPN, the Hill Enigma Substitution-Permutation Network. The repository supports an order-eight rotor-scheduled Hill-derived byte-local SPN linear-layer construction. The Enigma name refers only to public stepping among geometric matrix orientations. HESPN is a research harness, not a deployment-ready cipher or a claim that public orientation scheduling improves security over a static layer."
 keywords:
   - cryptography
   - Hill cipher
@@ -20,3 +20,11 @@ keywords:
   - rotor scheduling
   - branch number
   - HESPN
+preferred-citation:
+  type: article
+  title: "Order-Eight Rotor-Scheduled Hill Matrices: Construction and Validation of a Byte-Local SPN Linear Layer"
+  authors:
+    - family-names: "Coggins"
+      given-names: "Porter E."
+      name-suffix: "III"
+  year: 2026

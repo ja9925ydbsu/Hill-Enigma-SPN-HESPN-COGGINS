@@ -1,37 +1,45 @@
-# Project status: CiC construction-study alignment
+# Project status: Cryptologia construction-study alignment
 
-Updated: 2026-08-28
+Updated: 2026-09-15
 
-The repository is aligned with the Communications in Cryptology manuscript **Hill-Enigma-SPN: Rotor-Scheduled Hill Matrices as a Mix Layer in an Experimental SPN**.
+This repository is aligned with the manuscript **Order-Eight Rotor-Scheduled Hill Matrices: Construction and Validation of a Byte-Local SPN Linear Layer**, prepared for submission to *Cryptologia*.
 
 ## Current research claim
 
-The current paper asks whether previously reported Hill-matrix element rotations can be used as a reversible, locally diffusion-bounded linear mix layer in an SPN. It does not propose HESPN as a deployment-ready cipher and does not claim that public rotor scheduling provides a security advantage over a static orientation.
+The HESPN paper asks whether previously reported Hill-matrix element rotations can be extended to order eight and used as a reversible, locally diffusion-bounded linear mix layer in an experimental substitution-permutation network. It does not propose HESPN as a deployment-ready cipher and does not claim that public rotor scheduling provides a security advantage over a static orientation.
+
+HESPN means **Hill Enigma Substitution-Permutation Network**. The term *Enigma* refers only to the public stepping inspiration behind scheduled geometric reorientation of the matrix entries. HESPN has no reflector, no Enigma rotor wiring, and no self-inverse signal path.
 
 ## Verified construction properties
 
 - Sixteen accepted 8 x 8 binary seed matrices are used in the reference configuration.
-- Every scheduled orientation is invertible.
-- The four orientations require only two independent branch-number evaluations, B(M) and B(M^T).
-- Every scheduled orientation satisfies the local floor B >= 4.
+- Clockwise rotation satisfies `R(M) = M^T J` and therefore preserves invertibility.
+- The four orientations require only two independent branch-number evaluations, `B(M)` and `B(M^T)`.
+- Every scheduled orientation satisfies the local floor `B >= 4` after successful setup.
 - The sixteen-round public schedule uses all 64 labeled seed-orientation pairs equally.
-- The complete round function has an exact inverse.
+- Every round and the complete sixteen-round mapping have exact inverses.
 - Reference vectors check bit packing, round order, matrix application, substitution, routing, and decryption.
 - The rejection filter is feasible for the reported prototype setup.
 
-## CiC-specific empirical checks
+## Bounded integration checks
 
-The current revision adds only two bounded integration checks:
+The construction paper reports two deliberately limited empirical checks:
 
 1. Exact local one-bit spreading over all 64 oriented matrices under the reference key. Output weight ranges from 3 to 8 bits with mean 4.5390625.
-2. A fresh plaintext-avalanche integration run using 5,000 deterministic pairs per tested round count. At sixteen rounds the mean ciphertext Hamming distance is 63.9664 bits with 95 percent confidence interval [63.81093, 64.12187].
+2. A plaintext-avalanche integration check using 5,000 deterministic pairs per tested round count. At sixteen rounds the mean ciphertext Hamming distance is 63.9664 bits with 95 percent confidence interval [63.81093, 64.12187].
 
 These checks do not establish full-cipher security or isolate a benefit caused by orientation scheduling.
 
-## Analyses outside the current CiC paper
+## Separate manuscript under review
 
-Weight-one transfer analysis, matched schedule comparisons, optimized differential and linear trails, boomerang analysis, NIST tests, algebraic-degree screens, cross-byte MDS experiments, and broader slide, reflection, and related-key cryptanalysis are outside the construction question. Historical files covering those topics remain available for reproducibility but are not part of the CiC evidentiary chain.
+The comparative scheduling question is treated in a separate manuscript, **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, which is currently under review. Its matched schedule experiments, exact weight-one transfer analysis, structural support arguments, and cross-byte boundary experiments are maintained in the dedicated repository:
 
-## Public repository versus submission package
+<https://github.com/ja9925ydbsu/structural-limits-orientation-scheduling>
 
-The public repository contains the executable research code, historical reproducibility assets, scope documentation, and the two machine-readable CiC verification datasets. The complete `iacrj` and `iacrcc` manuscript submission packages are maintained separately as submission artifacts and are not mirrored here by default. This avoids treating a public code repository as the journal submission archive.
+They are not part of the HESPN construction manuscript's evidentiary chain.
+
+## Repository cleanup completed for Cryptologia alignment
+
+The September 2026 cleanup removes duplicate Structural Limits experiment files from the HESPN working tree, while preserving them in the dedicated Structural Limits repository and in Git history. Older HESPN-v4 diagnostic material is retained under `legacy_hespn_v4/` as historical research provenance rather than current manuscript evidence.
+
+Current construction-support material is under `cryptologia_support/`, and the current executable reference implementation is `hespn_reference.py`.

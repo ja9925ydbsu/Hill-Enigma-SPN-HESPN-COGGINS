@@ -1,14 +1,14 @@
-# Project status: IJIS Revision 6
+# Project status: Cryptologia submission preparation
 
-Updated: 2026-09-14
+Updated: 2026-09-15
 
-The current manuscript is being finalized for author review/pre-submission to Springer Nature's **International Journal of Information Security** under the title **Order-Eight Rotor-Scheduled Hill Matrices: Construction and Validation of a Byte-Local SPN Linear Layer**.
+The current manuscript is being prepared for submission to Taylor & Francis **Cryptologia** under the title **Order-Eight Rotor-Scheduled Hill Matrices: Construction and Validation of a Byte-Local SPN Linear Layer**.
+
+The journal transition is a submission-format repackaging of the finalized HESPN Revision 6 scientific content. The construction, propositions, numerical results, test vectors, figures, and claim boundaries are unchanged.
 
 ## Current research claim
 
 The paper asks whether matrix-element rotations previously reported for order-two Hill-derived constructions can be extended to order eight and used as a reversible, locally diffusion-bounded linear layer in a byte-oriented SPN. The contribution is framed as a coherent construction framework comprising the order-eight rotation, orientation algebra `R(M) = M^T J`, two-value branch-number reduction, deterministic admissible-family construction, balanced public scheduling, and reversible SPN integration.
-
-Revision 6 adds one compact lineage-comparison table near the end of the Introduction. The table compares only the three directly cited antecedent constructions already used in the manuscript's novelty discussion and explicitly states that it is not a claim of priority over the broader literature.
 
 ## Verified construction properties
 
@@ -35,12 +35,14 @@ The avalanche statistic is used only as a bounded implementation sanity check fo
 - No nontrivial multi-round active-S-box lower bound is established.
 - No matched static-versus-rotor schedule comparison is part of this construction-feasibility paper.
 
-## Revision 6
+`active_sbox_bounds.csv` is explicitly outside this evidence chain. Its 5/25/30/50 active-S-box values come from `run_mds_rotor_study.py` for a separate 4 x 4 GF(2^8) MDS-rotor study and are not HESPN results.
 
-Revision 6 is a positioning pass over Revision 5. It adds only the compact direct-lineage comparison table and does not change the construction, scientific results, numerical values, test vectors, figures, or bibliography. The current Springer author-side build is 13 pages because the added table is allowed to remain readable rather than compressing existing material to preserve the earlier page count.
+## Cryptologia submission transition
+
+The author-side package now contains a double-anonymized review manuscript, a full author-identified manuscript, a separate title page, separate figure files, a Cryptologia cover letter, and an anonymized HESPN-only reproducibility supplement. Citation presentation has been converted to author-year form for the Cryptologia review copy.
 
 ## Public repository versus journal submission package
 
-The public repository contains executable research code, historical reproducibility assets, scope documentation, and machine-readable construction-verification datasets. The complete Springer Nature / IJIS manuscript package and cover letter are maintained separately as author-side submission artifacts.
+The public repository contains executable research code, historical reproducibility assets, scope documentation, and machine-readable construction-verification datasets. The complete Cryptologia submission package is maintained separately as an author-side artifact.
 
-See `docs/IJIS_SUBMISSION_STATUS_2026_09_14.md` and `docs/REPRODUCIBILITY_IJIS_2026_09_14.md` for the current status and evidentiary chain.
+See `docs/CRYPTOLOGIA_SUBMISSION_STATUS_2026_09_15.md`, `docs/REPRODUCIBILITY_CRYPTOLOGIA_2026_09_15.md`, and `docs/EXCLUDED_MDS_ROTOR_ARTIFACTS.md`.

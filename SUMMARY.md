@@ -1,15 +1,19 @@
-# HESPN Cryptologia construction-and-validation summary
+# HESPN Cryptologia Revision 7A summary
 
-HESPN, the **Hill Enigma Substitution-Permutation Network**, is used as an experimental SPN harness for one construction and validation question: can a family of rotated Hill-derived 8 x 8 matrices over GF(2) occupy the linear mix-layer position of an SPN while remaining explicit, reversible, locally diffusion-bounded, and reproducible?
+HESPN, the **Hill Enigma Substitution-Permutation Network**, is used as an experimental SPN harness for a construction and analysis question: can a family of rotated Hill-derived 8 x 8 matrices over GF(2) occupy the linear mix-layer position of an SPN while remaining explicit, reversible, locally diffusion-bounded, and reproducible, and what limits follow directly from that architecture?
 
-The term *Enigma* refers only to the public stepping inspiration behind the scheduled geometric reorientation of matrix entries. HESPN does not reproduce the historical Enigma machine's reflector, rotor wiring, or self-inverse signal path.
+The term *Enigma* refers only to the public stepping inspiration behind scheduled geometric reorientation of matrix entries. HESPN does not reproduce the historical Enigma machine's reflector, rotor wiring, or self-inverse signal path.
 
-The current manuscript, **Order-Eight Rotor-Scheduled Hill Matrices: Construction and Validation of a Byte-Local SPN Linear Layer**, is prepared for submission to *Cryptologia*. Its result is limited but affirmative. Matrix rotation preserves invertibility; accepted seeds satisfy the local branch-number floor in all scheduled orientations; the public schedule uses each labeled seed-orientation pair equally; and the complete sixteen-round map is invertible. Reference vectors and setup statistics make the prototype independently checkable.
+The current manuscript, **Order-Eight Rotor-Scheduled Hill Matrices: Construction, Validation, and Diffusion Limits of a Byte-Local SPN Linear Layer**, is prepared for submission to *Cryptologia*. Its purpose is to define and analyze the mechanism, not to claim security for HESPN as a cipher.
 
-The significance is not that the order-eight public schedule is shown to improve security. Rather, a previously published order-two mechanism is given a mathematically consistent byte-scale realization with explicit admissibility conditions, reproducible scheduling, and reversible SPN integration. Together these properties establish a construction and validation framework against which later comparative and cryptanalytic studies can be posed.
+The construction result is affirmative. Matrix rotation preserves invertibility; accepted seeds satisfy the local branch-number floor in all scheduled orientations; the public schedule uses each labeled seed-orientation pair equally; and the complete sixteen-round map is invertible. Reference vectors and setup statistics make the prototype independently checkable.
 
-The current validation evidence also includes an exact local diffusion profile and one bounded plaintext-avalanche integration check. Those measurements are implementation and integration checks, not security proofs and not evidence that scheduling is superior to a static matrix layer.
+The manuscript also sharpens the limits of those claims. For a scheduled byte matrix `M`, `S o M` is linearly equivalent to `S`, so the matrix does not improve the S-box maximum differential probability or maximum absolute linear correlation. The composite linear map between successive S-box layers has byte branch number 2, and one-active-S-box differential characteristics and linear trails exist through all 16 rounds of the reference configuration.
 
-The limits of public orientation scheduling are investigated separately in **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**. Its code and results are maintained at <https://github.com/ja9925ydbsu/structural-limits-orientation-scheduling> rather than in the current HESPN evidentiary chain.
+Reduced-round fixed-key endpoint checks differ substantially from selected single-characteristic and single-trail products. In particular, the tested three-round endpoint differential is observed at about `2^-11.01` versus a selected single-characteristic product of `2^-18`, and the tested three- to six-round endpoint linear correlations are materially larger than the selected single-trail magnitudes. These results show that the single-trail products are not security margins for the fixed-key construction. They do not establish a full-round distinguisher or a deployment security level.
 
-Current Cryptologia-aligned support materials are under `cryptologia_support/`. Historical HESPN-v4 diagnostic material is retained under `legacy_hespn_v4/` only for provenance.
+The current validation evidence also includes an exact local diffusion profile and one bounded plaintext-avalanche integration check. Those measurements are implementation and integration checks, not evidence that scheduling is superior to a static matrix layer.
+
+The matched orientation-scheduling comparison is treated separately in **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, with working materials at <https://github.com/ja9925ydbsu/structural-limits-orientation-scheduling>.
+
+Current Revision 7A support materials are under `cryptologia_support/`. Historical HESPN-v4 diagnostic material is retained under `legacy_hespn_v4/` only for provenance.

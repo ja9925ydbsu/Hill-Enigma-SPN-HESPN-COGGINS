@@ -1,17 +1,17 @@
 cff-version: 1.2.0
-message: "If you use this software or the construction-verification materials, please cite this repository and the associated manuscript when appropriate."
-title: "Hill Enigma Substitution-Permutation Network (HESPN): Reference Implementation and Validation Materials"
+message: "If you use this software or the construction, validation, and diffusion-limit materials, please cite this repository and the associated manuscript when appropriate."
+title: "Hill Enigma Substitution-Permutation Network (HESPN): Reference Implementation, Validation, and Diffusion-Limit Materials"
 type: software
 authors:
   - family-names: "Coggins"
     given-names: "Porter E."
     name-suffix: "III"
     affiliation: "Bemidji State University"
-version: "Cryptologia submission Revision 2"
-date-released: "2026-09-15"
+version: "Cryptologia submission Revision 7A"
+date-released: "2026-09-16"
 repository-code: "https://github.com/ja9925ydbsu/Hill-Enigma-SPN-HESPN-COGGINS"
 license: MIT
-abstract: "Reference software and construction-verification materials for HESPN, the Hill Enigma Substitution-Permutation Network. The repository supports an order-eight rotor-scheduled Hill-derived byte-local SPN linear-layer construction. The Enigma name refers only to public stepping among geometric matrix orientations. HESPN is a research harness, not a deployment-ready cipher or a claim that public orientation scheduling improves security over a static layer."
+abstract: "Reference software and supporting materials for HESPN, the Hill Enigma Substitution-Permutation Network. The repository supports an order-eight rotor-scheduled Hill-derived byte-local SPN linear-layer construction, its implementation validation, and bounded analysis of its diffusion limits. The Enigma name refers only to public stepping among geometric matrix orientations. HESPN is a research harness, not a deployment-ready cipher, and no full-round security claim or comparative scheduling advantage is asserted."
 keywords:
   - cryptography
   - Hill cipher
@@ -19,10 +19,12 @@ keywords:
   - matrix diffusion
   - rotor scheduling
   - branch number
+  - linear cryptanalysis
+  - differential cryptanalysis
   - HESPN
 preferred-citation:
   type: article
-  title: "Order-Eight Rotor-Scheduled Hill Matrices: Construction and Validation of a Byte-Local SPN Linear Layer"
+  title: "Order-Eight Rotor-Scheduled Hill Matrices: Construction, Validation, and Diffusion Limits of a Byte-Local SPN Linear Layer"
   authors:
     - family-names: "Coggins"
       given-names: "Porter E."

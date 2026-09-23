@@ -1,6 +1,6 @@
 # Source and reuse notes
 
-This repository contains the current HESPN reference implementation and Revision 7A support materials together with historical HESPN development material. The current *Cryptologia* manuscript uses the byte-local 8 x 8 GF(2) rotor-matrix construction as an experimental SPN mix-layer harness and analyzes where its local diffusion guarantees end.
+This repository contains the current HESPN reference implementation and CiC working-manuscript support materials together with historical HESPN development material. The current manuscript, **Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN**, uses the byte-local 8 x 8 GF(2) rotor-matrix construction as an experimental SPN mix-layer harness and analyzes where its local diffusion guarantees end.
 
 ## Current HESPN evidence
 
@@ -21,7 +21,7 @@ The public repository should be read as supporting the following items:
 - one-active-S-box single-characteristic and single-trail searches for the reference key;
 - reduced-round fixed-key endpoint checks used to show that selected single-trail products are not security margins for the fixed-key construction.
 
-Current machine-readable validation data and trail-check summaries are under `cryptologia_support/`.
+Current machine-readable validation data and trail-check summaries are under `iacr_cic_support/`.
 
 ## Interpretation boundary
 
@@ -31,7 +31,7 @@ Full-round differential and linear hull analysis, boomerang, slide, reflection, 
 
 ## Relationship to the separate orientation-scheduling study
 
-The HESPN manuscript establishes the construction and analyzes its direct diffusion limits. A distinct study, **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, asks what effect, if any, public scheduling has relative to matched static controls.
+The HESPN manuscript establishes the construction and analyzes its direct diffusion limits. The distinct comparative question has now been published as **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, published in *Cryptography* 2026, 10, 71 (23 September 2026), https://doi.org/10.3390/cryptography10050071; that study asks what effect, if any, public scheduling has relative to matched controls.
 
 Its exact low-support recurrence calculations, matched schedule comparisons, support-growth analysis, cross-byte boundary work, calibration panels, and related outputs belong in the dedicated repository:
 
@@ -41,7 +41,7 @@ The September 2026 HESPN cleanup removed duplicate copies of that separate-study
 
 ## Historical HESPN material
 
-Older HESPN-v4 diagnostic scripts and July 2026 logs are preserved under `legacy_hespn_v4/` for provenance. They document development history but are not part of the present Cryptologia claim set unless a current support note explicitly promotes a result into the Revision 7A evidence chain.
+Older HESPN-v4 diagnostic scripts and July 2026 logs are preserved under `legacy_hespn_v4/` for provenance. They document development history but are not part of the current CiC manuscript claim set unless a current support note explicitly promotes a result into the Revision 7A evidence chain.
 
 ## Reuse principle
 

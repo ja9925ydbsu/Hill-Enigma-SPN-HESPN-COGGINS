@@ -1,8 +1,8 @@
-# Verification and diffusion-limit metrics for the Cryptologia manuscript
+# Verification and diffusion-limit metrics for the IACR CiC working manuscript
 
-Updated: 2026-09-16
+Updated: 2026-09-23
 
-These materials support **Order-Eight Rotor-Scheduled Hill Matrices: Construction, Validation, and Diffusion Limits of a Byte-Local SPN Linear Layer**. The purpose of the paper is to define and analyze the mechanism, not to claim security for HESPN as a cipher.
+These materials support **Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN**, prepared for *IACR Communications in Cryptology* (CiC). The purpose of the paper is to define and analyze the mechanism, not to claim security for HESPN as a cipher.
 
 ## Exact local matrix profile
 
@@ -84,4 +84,4 @@ The author-review trail driver is `../hespn_trail_checks.py`. The independent Re
 
 Full-round differential and linear hull analysis, boomerang, slide, reflection, related-key, and wide-trail cryptanalysis are not established by the current manuscript.
 
-The matched comparison of public orientation scheduling against a fixed-orientation control, together with broader low-support transfer and cross-byte boundary studies, belongs to the separate **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers** project.
+The matched comparison of public orientation scheduling against fixed and other schedule controls, together with broader low-support transfer and cross-byte boundary studies, is reported separately in **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, published in *Cryptography* 2026, 10, 71 (23 September 2026), https://doi.org/10.3390/cryptography10050071.

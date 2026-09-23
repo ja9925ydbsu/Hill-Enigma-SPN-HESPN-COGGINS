@@ -1,6 +1,6 @@
-# Cryptologia Revision 7A support materials
+# IACR Communications in Cryptology working-manuscript support materials
 
-This directory contains public reproducibility material aligned with **Order-Eight Rotor-Scheduled Hill Matrices: Construction, Validation, and Diffusion Limits of a Byte-Local SPN Linear Layer**.
+This directory contains public reproducibility material aligned with **Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN**, the current working manuscript prepared for *IACR Communications in Cryptology* (CiC).
 
 It is intentionally not a mirror of the double-anonymous journal submission package.
 
@@ -20,6 +20,11 @@ These files support construction, implementation validation, and bounded analysi
 
 The current manuscript proves that a scheduled byte matrix composed with the following S-box is linearly equivalent to that S-box alone and that the composite inter-round linear map has byte branch number 2. It also reports one-active-S-box trail searches and reduced-round fixed-key endpoint checks. Those bounded results do not replace full-round differential or linear hull analysis.
 
-The matched static-versus-scheduled question is treated separately in **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, with working materials at:
+The matched static-versus-scheduled question has been published separately as **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, published in *Cryptography* 2026, 10, 71 (23 September 2026), https://doi.org/10.3390/cryptography10050071. Working materials remain at:
 
 <https://github.com/ja9925ydbsu/structural-limits-orientation-scheduling>
+
+
+## Directory history
+
+This support directory was renamed from `cryptologia_support/` to `iacr_cic_support/` on 23 September 2026 after the journal target changed. The validation data were preserved; the rename reflects manuscript alignment rather than a change in the underlying measurements.

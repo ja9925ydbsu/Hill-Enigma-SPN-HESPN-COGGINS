@@ -1,8 +1,8 @@
-# Project status: Cryptologia Revision 7A alignment
+# Project status: IACR Communications in Cryptology working-manuscript alignment
 
-Updated: 2026-09-16
+Updated: 2026-09-23
 
-This repository is aligned with the manuscript **Order-Eight Rotor-Scheduled Hill Matrices: Construction, Validation, and Diffusion Limits of a Byte-Local SPN Linear Layer**, prepared for submission to *Cryptologia*.
+This repository is aligned with the working manuscript **Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN**, prepared for submission to *IACR Communications in Cryptology* (CiC).
 
 ## Current research claim
 
@@ -48,7 +48,7 @@ These checks do not isolate a benefit caused by orientation scheduling.
 
 ## Separate orientation-scheduling study
 
-The matched comparative question is treated separately in **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, with code and results maintained in the dedicated repository:
+The matched comparative question is treated separately in **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, published in *Cryptography* 2026, 10, 71 (23 September 2026), https://doi.org/10.3390/cryptography10050071. Code, data, and reproducibility materials are maintained in the dedicated repository:
 
 <https://github.com/ja9925ydbsu/structural-limits-orientation-scheduling>
 
@@ -56,6 +56,6 @@ The HESPN manuscript does not rely on that separate study to claim a scheduling 
 
 ## Repository alignment
 
-The September 2026 cleanup removed duplicate Structural Limits experiment files from the HESPN working tree while preserving them in the dedicated Structural Limits repository and in Git history. Older HESPN-v4 diagnostics remain under `legacy_hespn_v4/` as historical research provenance rather than current manuscript evidence.
+The September 2026 cleanup removed duplicate Structural Limits experiment files from the HESPN working tree while preserving them in the dedicated Structural Limits repository and in Git history. On 23 September 2026, the public support directory was renamed from `cryptologia_support/` to `iacr_cic_support/` to reflect the new journal target; the underlying validation data remain the same. Older HESPN-v4 diagnostics remain under `legacy_hespn_v4/` as historical research provenance rather than current manuscript evidence.
 
-Current Revision 7A support material is under `cryptologia_support/`. The executable reference implementation is `hespn_reference.py`, and the bounded trail-check driver is `hespn_trail_checks.py`.
+Current working-manuscript support material is under `iacr_cic_support/`. The executable reference implementation is `hespn_reference.py`, and the bounded trail-check driver is `hespn_trail_checks.py`.

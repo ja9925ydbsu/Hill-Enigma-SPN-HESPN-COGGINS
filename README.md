@@ -1,6 +1,6 @@
 # Hill Enigma Substitution-Permutation Network (HESPN)
 
-This repository supports the manuscript **Order-Eight Rotor-Scheduled Hill Matrices: Construction, Validation, and Diffusion Limits of a Byte-Local SPN Linear Layer**, prepared for submission to *Cryptologia*.
+This repository supports the working manuscript **Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN**, prepared for submission to *IACR Communications in Cryptology* (CiC).
 
 ## Purpose
 
@@ -50,19 +50,19 @@ No full-round security claim follows from these observations. Full-round differe
 
 ## Separate orientation-scheduling study
 
-The comparative question of whether public orientation scheduling changes cryptanalytic behavior relative to a matched static orientation is treated separately in **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**. Its working materials are maintained in the dedicated repository:
+The comparative question of whether public orientation scheduling changes cryptanalytic behavior relative to matched static and other schedule controls has now been addressed separately in **Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers**, published in *Cryptography* 2026, 10, 71 (23 September 2026), https://doi.org/10.3390/cryptography10050071. Working and reproducibility materials are maintained in the dedicated repository:
 
 <https://github.com/ja9925ydbsu/structural-limits-orientation-scheduling>
 
-That separate study contains matched schedule controls, exact low-support transfer analysis, support-growth analysis, and cross-byte boundary experiments. Those analyses are not used here as evidence that HESPN's public schedule provides a security advantage.
+That published study contains matched schedule controls, exact low-support transfer analysis, support-growth analysis, and cross-byte boundary experiments. Its conclusion is kept distinct from the present manuscript: the CiC paper focuses on construction, algebraic characterization, and structural limits of the rotor-scheduled byte-local layer rather than claiming a comparative security advantage.
 
 ## Current files
 
 - `hespn_reference.py` is the current executable reference implementation and test-vector generator.
 - `hespn_test_vector_v4.py` is a compatibility entry point that re-exports the current reference implementation.
 - `hespn_trail_checks.py` is the NumPy-based author-review driver for the one-active-S-box trail search and reduced-round endpoint checks.
-- `cryptologia_support/` contains submission-aligned validation data, the independent trail-check summary, and interpretation notes.
-- `legacy_hespn_v4/` preserves older HESPN-v4 diagnostic material for research provenance. These files are historical and are not current Cryptologia evidence.
+- `iacr_cic_support/` contains current working-manuscript validation data, the independent trail-check summary, and interpretation notes.
+- `legacy_hespn_v4/` preserves older HESPN-v4 diagnostic material for research provenance. These files are historical and are not current CiC manuscript evidence.
 - `docs/LEGACY_AND_OUT_OF_SCOPE_ANALYSES.md` records the current scope boundary and the September 2026 repository cleanup.
 
 The public repository is intentionally not a mirror of the double-anonymous journal submission package. Author-identifying submission files, cover letters, and anonymous-review artifacts are maintained separately.

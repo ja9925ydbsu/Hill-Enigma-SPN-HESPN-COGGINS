@@ -4,7 +4,7 @@ This repository originally accumulated both HESPN construction work and broader 
 
 ## Current HESPN scope
 
-The *IACR Communications in Cryptology* working manuscript **Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN** addresses construction, algebra, admissibility, scheduling, reversibility, setup behavior, reference vectors, exact local profiling, a bounded avalanche check, matrix-S-box linear equivalence, the byte branch number of the composite inter-round linear map, one-active-S-box trail searches, and reduced-round fixed-key endpoint checks.
+The *IACR Communications in Cryptology* working manuscript **Rotor-Scheduled Linear Layers for Byte-Oriented SPNs: Construction and Cryptanalytic Characterization** addresses construction, algebra, admissibility, scheduling, reversibility, setup behavior, reference vectors, exact local profiling, a bounded avalanche check, matrix-S-box linear equivalence, the byte branch number of the composite inter-round linear map, one-active-S-box trail searches, and reduced-round fixed-key endpoint checks.
 
 The purpose of the paper is to define and analyze the mechanism, not to claim security for HESPN as a cipher. It does not claim that rotor scheduling is superior to a static orientation, it does not establish a deployment security level, and it does not establish or rule out a 16-round distinguisher.
 

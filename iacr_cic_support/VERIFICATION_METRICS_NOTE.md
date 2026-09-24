@@ -1,8 +1,8 @@
 # Verification and diffusion-limit metrics for the IACR CiC working manuscript
 
-Updated: 2026-09-23
+Updated: 2026-09-24
 
-These materials support **Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN**, prepared for *IACR Communications in Cryptology* (CiC). The purpose of the paper is to define and analyze the mechanism, not to claim security for HESPN as a cipher.
+These materials support **Rotor-Scheduled Linear Layers for Byte-Oriented SPNs: Construction and Cryptanalytic Characterization**, prepared for *IACR Communications in Cryptology* (CiC). The purpose of the paper is to define and analyze the mechanism, not to claim security for HESPN as a cipher.
 
 ## Exact local matrix profile
 

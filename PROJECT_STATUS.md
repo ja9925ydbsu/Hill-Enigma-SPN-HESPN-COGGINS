@@ -1,8 +1,8 @@
 # Project status: IACR Communications in Cryptology working-manuscript alignment
 
-Updated: 2026-09-23
+Updated: 2026-09-24
 
-This repository is aligned with the working manuscript **Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN**, prepared for submission to *IACR Communications in Cryptology* (CiC).
+This repository is aligned with the working manuscript **Rotor-Scheduled Linear Layers for Byte-Oriented SPNs: Construction and Cryptanalytic Characterization**, prepared for submission to *IACR Communications in Cryptology* (CiC).
 
 ## Current research claim
 

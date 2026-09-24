@@ -1,6 +1,6 @@
 # Hill Enigma Substitution-Permutation Network (HESPN)
 
-This repository supports the working manuscript **Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN**, prepared for submission to *IACR Communications in Cryptology* (CiC).
+This repository supports the working manuscript **Rotor-Scheduled Linear Layers for Byte-Oriented SPNs: Construction and Cryptanalytic Characterization**, prepared for submission to *IACR Communications in Cryptology* (CiC).
 
 ## Purpose
 
@@ -54,7 +54,7 @@ The comparative question of whether public orientation scheduling changes crypta
 
 <https://github.com/ja9925ydbsu/structural-limits-orientation-scheduling>
 
-That published study contains matched schedule controls, exact low-support transfer analysis, support-growth analysis, and cross-byte boundary experiments. Its conclusion is kept distinct from the present manuscript: the CiC paper focuses on construction, algebraic characterization, and structural limits of the rotor-scheduled byte-local layer rather than claiming a comparative security advantage.
+That published study contains matched schedule controls, exact low-support transfer analysis, support-growth analysis, and cross-byte boundary experiments. Its conclusion is kept distinct from the present manuscript: the CiC paper focuses on construction and cryptanalytic characterization of the rotor-scheduled linear layer for byte-oriented SPNs rather than claiming a comparative security advantage.
 
 ## Current files
 

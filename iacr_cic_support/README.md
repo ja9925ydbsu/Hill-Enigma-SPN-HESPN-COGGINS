@@ -1,6 +1,6 @@
 # IACR Communications in Cryptology working-manuscript support materials
 
-This directory contains public reproducibility material aligned with **Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN**, the current working manuscript prepared for *IACR Communications in Cryptology* (CiC).
+This directory contains public reproducibility material aligned with **Rotor-Scheduled Linear Layers for Byte-Oriented SPNs: Construction and Cryptanalytic Characterization**, the current working manuscript prepared for *IACR Communications in Cryptology* (CiC).
 
 It is intentionally not a mirror of the double-anonymous journal submission package.
 

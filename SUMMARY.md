@@ -4,7 +4,7 @@ HESPN, the **Hill Enigma Substitution-Permutation Network**, is used as an exper
 
 The term *Enigma* refers only to the public stepping inspiration behind scheduled geometric reorientation of matrix entries. HESPN does not reproduce the historical Enigma machine's reflector, rotor wiring, or self-inverse signal path.
 
-The current working manuscript, **Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN**, is prepared for submission to *IACR Communications in Cryptology* (CiC). Its purpose is to define and analyze the mechanism, not to claim security for HESPN as a cipher.
+The current working manuscript, **Rotor-Scheduled Linear Layers for Byte-Oriented SPNs: Construction and Cryptanalytic Characterization**, is prepared for submission to *IACR Communications in Cryptology* (CiC). Its purpose is to define and analyze the mechanism, not to claim security for HESPN as a cipher.
 
 The construction result is affirmative. Matrix rotation preserves invertibility; accepted seeds satisfy the local branch-number floor in all scheduled orientations; the public schedule uses each labeled seed-orientation pair equally; and the complete sixteen-round map is invertible. Reference vectors and setup statistics make the prototype independently checkable.
 

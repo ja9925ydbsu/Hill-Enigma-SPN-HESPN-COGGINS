@@ -1,6 +1,6 @@
 # Source and reuse notes
 
-This repository contains the current HESPN reference implementation and CiC working-manuscript support materials together with historical HESPN development material. The current manuscript, **Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN**, uses the byte-local 8 x 8 GF(2) rotor-matrix construction as an experimental SPN mix-layer harness and analyzes where its local diffusion guarantees end.
+This repository contains the current HESPN reference implementation and CiC working-manuscript support materials together with historical HESPN development material. The current manuscript, **Rotor-Scheduled Linear Layers for Byte-Oriented SPNs: Construction and Cryptanalytic Characterization**, uses the byte-local 8 x 8 GF(2) rotor-matrix construction as an experimental SPN mix-layer harness and analyzes where its local diffusion guarantees end.
 
 ## Current HESPN evidence
 

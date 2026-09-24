@@ -8,10 +8,10 @@ authors:
     name-suffix: "III"
     affiliation: "Bemidji State University"
 version: "IACR Communications in Cryptology working manuscript"
-date-released: "2026-09-23"
+date-released: "2026-09-24"
 repository-code: "https://github.com/ja9925ydbsu/Hill-Enigma-SPN-HESPN-COGGINS"
 license: MIT
-abstract: "Reference software and supporting materials for HESPN, the Hill Enigma Substitution-Permutation Network. The repository supports the working manuscript Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN, including implementation validation and bounded analysis of diffusion limits. The Enigma name refers only to public stepping among geometric matrix orientations. HESPN is a research harness, not a deployment-ready cipher, and no full-round security claim is asserted. Comparative orientation scheduling is treated separately in the published Cryptography 2026 article Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers."
+abstract: "Reference software and supporting materials for HESPN, the Hill Enigma Substitution-Permutation Network. The repository supports the working manuscript Rotor-Scheduled Linear Layers for Byte-Oriented SPNs: Construction and Cryptanalytic Characterization, including implementation validation and bounded analysis of diffusion limits. The Enigma name refers only to public stepping among geometric matrix orientations. HESPN is a research harness, not a deployment-ready cipher, and no full-round security claim is asserted. Comparative orientation scheduling is treated separately in the published Cryptography 2026 article Structural Limits of Orientation Scheduling in Byte-Local GF(2) Diffusion Layers."
 keywords:
   - cryptography
   - Hill cipher
@@ -24,7 +24,7 @@ keywords:
   - HESPN
 preferred-citation:
   type: article
-  title: "Rotor-Scheduled Byte-Local Linear Layers: Construction and Structural Limits in an SPN"
+  title: "Rotor-Scheduled Linear Layers for Byte-Oriented SPNs: Construction and Cryptanalytic Characterization"
   authors:
     - family-names: "Coggins"
       given-names: "Porter E."

@@ -1,4 +1,4 @@
-HESPN Cryptologia Revision 7A trail and fixed-key endpoint summary
+HESPN IACR CiC trail and fixed-key endpoint summary
 =================================================================
 
 Reference key
@@ -19,7 +19,7 @@ rounds 1..16:
 [-3.0, -6.0, -9.0, -12.0, -15.0, -18.0, -21.0, -24.0,
  -27.0, -30.0, -33.0, -36.0, -39.0, -42.0, -45.0, -48.0]
 
-Independent reduced-round fixed-key endpoint checks used in Revision 7A
+Independent reduced-round fixed-key endpoint checks used in the current CiC manuscript
 
 2-round differential
   selected single-characteristic model: 2^-12

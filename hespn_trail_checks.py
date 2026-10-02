@@ -1,4 +1,4 @@
-"""Trail and fixed-key endpoint checks for the HESPN Cryptologia manuscript.
+"""Trail and fixed-key endpoint checks for the HESPN IACR Communications in Cryptology manuscript.
 
 Place in the repository root next to hespn_reference.py and run:
 

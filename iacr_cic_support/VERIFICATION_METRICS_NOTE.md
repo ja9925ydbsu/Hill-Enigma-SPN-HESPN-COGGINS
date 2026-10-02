@@ -1,6 +1,6 @@
 # Verification and diffusion-limit metrics for the IACR CiC working manuscript
 
-Updated: 2026-09-24
+Updated: 2026-10-02
 
 These materials support **Rotor-Scheduled Linear Layers for Byte-Oriented SPNs: Construction and Cryptanalytic Characterization**, prepared for *IACR Communications in Cryptology* (CiC). The purpose of the paper is to define and analyze the mechanism, not to claim security for HESPN as a cipher.
 
@@ -78,7 +78,7 @@ The differential rows measure the complete fixed-key endpoint difference, not wh
 
 These measurements depart substantially from the selected single-trail products. They show that the latter cannot be used as security margins for the fixed-key construction. The zero count at two rounds is reported only as an observation with a confidence bound; it is not proof that an internal characteristic is impossible. No claim is made about the existence or absence of a 16-round distinguisher.
 
-The author-review trail driver is `../hespn_trail_checks.py`. The independent Revision 7A numerical summary is `trail_check_output_revision7.txt`. The trail driver requires NumPy in addition to the Python standard library.
+The author-review trail driver is `../hespn_trail_checks.py`. The independent reduced-round numerical summary is `trail_check_output_revision7.txt` (filename retained for provenance). The trail driver requires NumPy in addition to the Python standard library.
 
 ## Separate analyses
 
